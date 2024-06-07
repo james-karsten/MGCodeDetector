@@ -31,6 +31,7 @@
 #include "../include/macros.h"
 #include "millis_t.h"
 #include <stdint.h>
+#include "types.h"
 #include <stdlib.h>
 // [T] #define DEBUG_GCODE_PARSER
 #if ENABLED(DEBUG_GCODE_PARSER)
@@ -283,6 +284,8 @@ public:
   static millis_t value_millis() { return value_ulong(); }
   static millis_t value_millis_from_seconds() { return (millis_t)SEC_TO_MS(value_float()); }
 
+ // [T] Test contraint method
+  #define constrain(amt, low, high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
   // Reduce to fewer bits
   static int16_t value_int() { return (int16_t)value_long(); }
   static uint16_t value_ushort() { return (uint16_t)value_long(); }
