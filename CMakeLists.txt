@@ -7,3 +7,6 @@ include_directories(include)
 add_executable(untitled src/main.cpp src/parser.cpp
         include/types.h include/macros.h include/language.h include/Conditionals_LCD.h include/Configuration_adv.h
 include/Configuration.h include/millis_t.h)
+
+add_subdirectory(Google_tests)
+#add_subdirectory(Google_tests/lib)
