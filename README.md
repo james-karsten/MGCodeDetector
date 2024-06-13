@@ -21,6 +21,7 @@ This section serves as documentation for all additional code around the Marlin p
 
 ## Invalid G-code syntax detection: _detect_invalid_gcode()_ method in _parser.cpp_
 This method is added to prevent invalid syntax of G-code from being parsed by the parser. It uses case-sensitive or insensitive regular expressions that validate the syntax of the G-code line that was passed as a parameter in the _parse()_ method. When the syntax is invalid, the function will stop.
+
 **G-code syntax regex**:
 
 ```^([GMT]\d+)((\s+[XYZEFSPIJKDHLQWUVOR](-?\d+(\.\d*)?)?)*)\s*$```
