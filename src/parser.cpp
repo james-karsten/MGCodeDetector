@@ -406,7 +406,7 @@ bool GCodeParser::detect_invalid_gcode(const std::string &gcode, bool case_insen
 
     std::regex g_pattern(R"(^([GMT]\d+)((\s+[XYZEFSPIJKDHLQWUVOR](-?\d+(\.\d*)?)?)*)\s*$)");
 
-    // different G-code pattern if GCode is case-insensitive or not.
+    // different G-code pattern if GCode is case-insensitive
     if (case_insensitive) {
         g_pattern = std::regex(R"(^([GMT]\d+)((\s+[XYZEFSPIJKDHLQWUVOR](-?\d+(\.\d*)?)?)*)\s*$)", std::regex_constants::icase);
     }
