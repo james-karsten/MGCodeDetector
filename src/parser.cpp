@@ -171,11 +171,11 @@ void GCodeParser::parse(char *p) {
     }
   #endif
 
-  // Detect whether gcode line has correct syntax
-  //std::string gcodeLine(command_ptr);
-  //if (!detect_invalid_gcode(gcodeLine, ENABLED(GCODE_CASE_INSENSITIVE))){
-  //    return;
-  //};
+    // Detect whether gcode line has correct syntax
+    std::string gcodeLine(command_ptr);
+    if (!detect_invalid_gcode(command_ptr, ENABLED(GCODE_CASE_INSENSITIVE))){
+        return;
+    };
 
   /**
    * Screen for good command letters. G, M, and T are always accepted.
