@@ -1,6 +1,7 @@
 /**
  * The tests aim to test the method detect_invalid_gcode in the GCodeParser
- * which determines wheter a G-code line has valid syntax based on a regex expression.
+ * which determines whether a G-code line has valid syntax based on a regex expression.
+ * NOTE: most tests were created with the help of GPT4o
  */
 #include <gtest/gtest.h>
 #include "../src/parser.cpp"
