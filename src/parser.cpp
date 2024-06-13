@@ -25,17 +25,12 @@
  */
 
 #include "../include/parser.h"
-#include "../include/Configuration.h"
-#include "../include/Configuration_adv.h"
-#include "../include/macros.h"
 #include "../include/language.h"
-
-//#include "serial.h"
-//#include "MarlinCore.h"
 
 #include <stdint.h>
 #include <string.h>
 #include <iostream>
+#include <regex>
 // Must be declared for allocation and to satisfy the linker
 // Zero values need no initialization.
 
@@ -176,6 +171,12 @@ void GCodeParser::parse(char *p) {
     }
   #endif
 
+    // Detect whether gcode line has correct syntax
+    std::string gcodeLine(command_ptr);
+    if (!detect_invalid_gcode(command_ptr, ENABLED(GCODE_CASE_INSENSITIVE))){
+        return;
+    };
+
   /**
    * Screen for good command letters. G, M, and T are always accepted.
    * With Motion Modes enabled any axis letter can come first.
@@ -305,10 +306,11 @@ void GCodeParser::parse(char *p) {
   #if ENABLED(GCODE_QUOTED_STRINGS)
     bool quoted_string_arg = false;
   #endif
+
   string_arg = nullptr;
   while (const char param = uppercase(*p++)) {  // Get the next parameter. A NUL ends the loop
 
-    // Special handling for M32 [P] !/path/to/file.g#
+      // Special handling for M32 [P] !/path/to/file.g#
     // The path must be the last parameter
     if (param == '!' && is_command('M', 32)) {
       string_arg = p;                           // Name starts after '!'
@@ -332,8 +334,7 @@ void GCodeParser::parse(char *p) {
     #endif
 
     if (PARAM_OK(param)) {
-
-      while (*p == ' ') p++;                    // Skip spaces between parameters & values
+        while (*p == ' ') p++;                    // Skip spaces between parameters & values
 
       #if ENABLED(GCODE_QUOTED_STRINGS)
         const bool is_str = (*p == '"'), has_val = is_str || valid_float(p);
@@ -396,6 +397,27 @@ void GCodeParser::parse(char *p) {
   }
 
 #endif // CNC_COORDINATE_SYSTEMS
+
+/**
+ * This method detects invalid G-code input
+ * @return false if input of G-code is invalid, true if it is valid
+ */
+bool GCodeParser::detect_invalid_gcode(const std::string &gcode, bool case_insensitive) {
+
+    std::regex g_pattern(R"(^([GMT]\d+)((\s+[XYZEFSPIJKDHLQWUVOR](-?\d+(\.\d*)?)?)*)\s*$)");
+
+    // different G-code pattern if GCode is case-insensitive
+    if (case_insensitive) {
+        g_pattern = std::regex(R"(^([GMT]\d+)((\s+[XYZEFSPIJKDHLQWUVOR](-?\d+(\.\d*)?)?)*)\s*$)", std::regex_constants::icase);
+    }
+
+    if(!std::regex_match(gcode, g_pattern)) {
+        std::cerr << "Invalid G-code syntax: " << gcode << std::endl;
+        return false;
+    }
+
+    return true;
+}
 
 void GCodeParser::unknown_command_warning() {
   // [T] Changed to std::cout SERIAL_ECHO_MSG(STR_UNKNOWN_COMMAND, command_ptr, "\"");

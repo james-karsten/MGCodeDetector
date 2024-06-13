@@ -33,6 +33,7 @@
 #include <stdint.h>
 #include "types.h"
 #include <stdlib.h>
+#include <string>
 // [T] #define DEBUG_GCODE_PARSER
 #if ENABLED(DEBUG_GCODE_PARSER)
   #include "../libs/hex_print.h"
@@ -457,6 +458,9 @@ public:
     }
 
   #endif
+
+  // method to detect invalid gcode
+  static bool detect_invalid_gcode(const std::string &gcode, bool case_insensitive);
 };
 
 extern GCodeParser parser;
