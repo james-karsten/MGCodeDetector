@@ -137,9 +137,6 @@ void GCodeParser::parse(char *p) {
   // *p now points to the current command, which should be G, M, or T
   command_ptr = p;
 
-  std::string gcodeLine(command_ptr);
-  detect_invalid_gcode(gcodeLine);
-
   // Get the command letter, which must be G, M, or T
   const char letter = uppercase(*p++);
 
@@ -173,6 +170,12 @@ void GCodeParser::parse(char *p) {
       }
     }
   #endif
+
+  // Detect whether gcode line has correct syntax
+  //std::string gcodeLine(command_ptr);
+  //if (!detect_invalid_gcode(gcodeLine, ENABLED(GCODE_CASE_INSENSITIVE))){
+  //    return;
+  //};
 
   /**
    * Screen for good command letters. G, M, and T are always accepted.
@@ -399,12 +402,17 @@ void GCodeParser::parse(char *p) {
  * This method detects invalid G-code input
  * @return false if input of G-code is invalid, true if it is valid
  */
-bool GCodeParser::detect_invalid_gcode(const std::string &gcode) {
+bool GCodeParser::detect_invalid_gcode(const std::string &gcode, bool case_insensitive) {
 
-    std::regex gPattern(R"(^([GMT]\d+)((\s+[XYZEFSPIJKDHLQWUVOR](-?\d+(\.\d*)?)?)*)\s*$)");
+    std::regex g_pattern(R"(^([GMT]\d+)((\s+[XYZEFSPIJKDHLQWUVOR](-?\d+(\.\d*)?)?)*)\s*$)");
 
-    if(!std::regex_match(gcode, gPattern)) {
-        std::cerr << "Invalid G-code line: " << gcode << std::endl;
+    // different G-code pattern if GCode is case-insensitive or not.
+    if (case_insensitive) {
+        g_pattern = std::regex(R"(^([GMT]\d+)((\s+[XYZEFSPIJKDHLQWUVOR](-?\d+(\.\d*)?)?)*)\s*$)", std::regex_constants::icase);
+    }
+
+    if(!std::regex_match(gcode, g_pattern)) {
+        std::cerr << "Invalid G-code syntax: " << gcode << std::endl;
         return false;
     }
 

@@ -460,7 +460,7 @@ public:
   #endif
 
   // method to detect invalid gcode
-  static bool detect_invalid_gcode(const std::string &gcodeLine);
+  static bool detect_invalid_gcode(const std::string &gcode, bool case_insensitive);
 };
 
 extern GCodeParser parser;
