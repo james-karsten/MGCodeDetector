@@ -26,6 +26,7 @@
 
 #include "../include/parser.h"
 #include "../include/language.h"
+#include "malicious-gcode-detector/GCodeSecurity.h"
 
 #include <stdint.h>
 #include <string.h>
@@ -71,6 +72,9 @@ uint16_t GCodeParser::codenum;
 
 // Create a global instance of the G-Code parser singleton
 GCodeParser parser;
+
+// Create instance of
+GCodeSecurity security;
 
 /**
  * Clear all code-seen (and value pointers)
@@ -176,6 +180,8 @@ void GCodeParser::parse(char *p) {
     if (!detect_invalid_gcode(command_ptr, ENABLED(GCODE_CASE_INSENSITIVE))){
         return;
     };
+
+    security.check_malicious_instruction(command_letter, codenum);
 
   /**
    * Screen for good command letters. G, M, and T are always accepted.
