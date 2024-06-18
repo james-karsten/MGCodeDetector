@@ -26,7 +26,7 @@
 
 #include "../include/parser.h"
 #include "../include/language.h"
-#include "malicious-gcode-detector/GCodeSecurity.h"
+#include "malicious-gcode-detector/GCodeSecurityDispatcher.h"
 
 #include <stdint.h>
 #include <string.h>
@@ -74,7 +74,7 @@ uint16_t GCodeParser::codenum;
 GCodeParser parser;
 
 // Create instance of
-GCodeSecurity security;
+GCodeSecurityDispatcher security;
 
 /**
  * Clear all code-seen (and value pointers)
@@ -181,8 +181,6 @@ void GCodeParser::parse(char *p) {
         return;
     };
 
-    security.check_malicious_instruction(command_letter, codenum);
-
   /**
    * Screen for good command letters. G, M, and T are always accepted.
    * With Motion Modes enabled any axis letter can come first.
@@ -225,8 +223,9 @@ void GCodeParser::parse(char *p) {
       codenum = 0;
 
       do { codenum = codenum * 10 + *p++ - '0'; } while (NUMERIC(*p));
+      security.check_malicious_instruction(command_letter, codenum, 0, command_ptr);
 
-      // Apply the sign, if any
+          // Apply the sign, if any
       TERN_(SIGNED_CODENUM, codenum *= sign);
 
       // Allow for decimal point in command
