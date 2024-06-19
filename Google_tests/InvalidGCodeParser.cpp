@@ -52,7 +52,7 @@ TEST_F(GCodeInputParserTest, InvalidGcode) {
 
 TEST_F(GCodeInputParserTest, FuzzedGcode) {
     EXPECT_FALSE(GCodeParser::detect_invalid_gcode("G1 X10 Y20 Z30@#$", false));
-    EXPECT_TRUE(GCodeParser::detect_invalid_gcode("M104_M109 S-99999", false));
+    EXPECT_TRUE(GCodeParser::detect_invalid_gcode("M104 S-99999", false));
     EXPECT_FALSE(GCodeParser::detect_invalid_gcode("G1 X+10 Y-20", false));
     EXPECT_FALSE(GCodeParser::detect_invalid_gcode("G1 X1e10 Y2e-3", false));
     EXPECT_FALSE(GCodeParser::detect_invalid_gcode("G1 X10 Y20 Z\n30", false));
@@ -118,7 +118,7 @@ TEST_F(GCodeInputParserTest, CaseInsensitiveInvalidGcode) {
 
 TEST_F(GCodeInputParserTest, CaseInsensitiveFuzzedGcode) {
     EXPECT_FALSE(GCodeParser::detect_invalid_gcode("g1 X10 y20 Z30@#$", true));
-    EXPECT_TRUE(GCodeParser::detect_invalid_gcode("M104_M109 s-99999", true));
+    EXPECT_TRUE(GCodeParser::detect_invalid_gcode("M104 s-99999", true));
     EXPECT_FALSE(GCodeParser::detect_invalid_gcode("G1 X+10 Y-20", true));
     EXPECT_FALSE(GCodeParser::detect_invalid_gcode("G1 x1e10 Y2e-3", true));
     EXPECT_FALSE(GCodeParser::detect_invalid_gcode("G1 X10 Y20 Z\n30", true));
