@@ -63,6 +63,20 @@ build CMakeFiles/untitled.dir/src/parser.cpp.obj: CXX_COMPILER__untitled_unscann
   OBJECT_DIR = CMakeFiles\untitled.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled.dir\src
 
+build CMakeFiles/untitled.dir/src/malicious-gcode-detector/GCodeSecurity.cpp.obj: CXX_COMPILER__untitled_unscanned_Debug C$:/Users/james/CLionProjects/untitled/src/malicious-gcode-detector/GCodeSecurity.cpp || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\src\malicious-gcode-detector\GCodeSecurity.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/james/CLionProjects/untitled/include
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir\src\malicious-gcode-detector
+
+build CMakeFiles/untitled.dir/src/malicious-gcode-detector/temp/M104.cpp.obj: CXX_COMPILER__untitled_unscanned_Debug C$:/Users/james/CLionProjects/untitled/src/malicious-gcode-detector/temp/M104.cpp || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\src\malicious-gcode-detector\temp\M104.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/james/CLionProjects/untitled/include
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir\src\malicious-gcode-detector\temp
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled
@@ -71,7 +85,7 @@ build CMakeFiles/untitled.dir/src/parser.cpp.obj: CXX_COMPILER__untitled_unscann
 #############################################
 # Link the executable untitled.exe
 
-build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/src/main.cpp.obj CMakeFiles/untitled.dir/src/parser.cpp.obj
+build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/src/main.cpp.obj CMakeFiles/untitled.dir/src/parser.cpp.obj CMakeFiles/untitled.dir/src/malicious-gcode-detector/GCodeSecurity.cpp.obj CMakeFiles/untitled.dir/src/malicious-gcode-detector/temp/M104.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled.dir

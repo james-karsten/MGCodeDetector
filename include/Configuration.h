@@ -217,7 +217,7 @@
 //#define SINGLENOZZLE
 
 // Save and restore temperature and fan speed on tool-change.
-// Set standby for the unselected tool with M104/106/109 T...
+// Set standby for the unselected tool with M104_M109/106/109 T...
 #if ENABLED(SINGLENOZZLE)
   //#define SINGLENOZZLE_STANDBY_TEMP
   //#define SINGLENOZZLE_STANDBY_FAN
@@ -837,7 +837,7 @@
 #endif // PIDTEMPCHAMBER
 
 #if ANY(PIDTEMP, PIDTEMPBED, PIDTEMPCHAMBER)
-  //#define PID_OPENLOOP          // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
+  //#define PID_OPENLOOP          // Puts PID in open loop. M104_M109/M140 sets the output power from 0 to PID_MAX
   //#define SLOW_PWM_HEATERS      // PWM with very low frequency (roughly 0.125Hz=8s) and minimum state time of approximately 1s useful for heaters driven by a relay
   #define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.

@@ -26,6 +26,7 @@
 
 #include "../include/parser.h"
 #include "../include/language.h"
+#include "malicious-gcode-detector/GCodeSecurityDispatcher.h"
 
 #include <stdint.h>
 #include <string.h>
@@ -71,6 +72,9 @@ uint16_t GCodeParser::codenum;
 
 // Create a global instance of the G-Code parser singleton
 GCodeParser parser;
+
+// Create instance of
+GCodeSecurityDispatcher security;
 
 /**
  * Clear all code-seen (and value pointers)
@@ -219,8 +223,9 @@ void GCodeParser::parse(char *p) {
       codenum = 0;
 
       do { codenum = codenum * 10 + *p++ - '0'; } while (NUMERIC(*p));
+          security.check_malicious_instruction(command_letter, codenum, command_ptr);
 
-      // Apply the sign, if any
+          // Apply the sign, if any
       TERN_(SIGNED_CODENUM, codenum *= sign);
 
       // Allow for decimal point in command
@@ -404,11 +409,11 @@ void GCodeParser::parse(char *p) {
  */
 bool GCodeParser::detect_invalid_gcode(const std::string &gcode, bool case_insensitive) {
 
-    std::regex g_pattern(R"(^([GMT]\d+)((\s+[XYZEFSPIJKDHLQWUVOR](-?\d+(\.\d*)?)?)*)\s*$)");
+    std::regex g_pattern(R"(^([GMT]\d+)((\s+[ABCDEFGHIJKLMNOPQRSTUVWXYZ](-?\d+(\.\d*)?)?)*)\s*$)");
 
     // different G-code pattern if GCode is case-insensitive
     if (case_insensitive) {
-        g_pattern = std::regex(R"(^([GMT]\d+)((\s+[XYZEFSPIJKDHLQWUVOR](-?\d+(\.\d*)?)?)*)\s*$)", std::regex_constants::icase);
+        g_pattern = std::regex(R"(^([GMT]\d+)((\s+[ABCDEFGHIJKLMNOPQRSTUVWXYZ](-?\d+(\.\d*)?)?)*)\s*$)", std::regex_constants::icase);
     }
 
     if(!std::regex_match(gcode, g_pattern)) {
