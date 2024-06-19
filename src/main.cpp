@@ -31,14 +31,14 @@ int main() {
 //    GCodeParser::parse(testLine10);
 //    GCodeParser::parse(testLine11);
 //    GCodeParser::parse(testLine12);
-    GCodeParser::parse(testLine13);
+//    GCodeParser::parse(testLine13);
 //    GCodeParser::parse(testLine14);
 //    GCodeParser::parse(testLine15);
 //    GCodeParser::parse(testLine16);
 //    GCodeParser::parse(testLine17);
 //    GCodeParser::parse(testLine18);
 //    GCodeParser::parse(testLine19);
-//    GCodeParser::parse(testLine20);
+    GCodeParser::parse(testLine20);
 
     return 0;
 }

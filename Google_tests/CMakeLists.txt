@@ -8,7 +8,8 @@ add_executable(Google_Tests_run InvalidGCodeParser.cpp
         ../src/malicious-gcode-detector/GCodeSecurityDispatcher.h
         ../src/malicious-gcode-detector/temp/M104_M109/M104_M109.cpp
         ../src/malicious-gcode-detector/temp/TemperatureSecurity.cpp
-        ../src/malicious-gcode-detector/temp/TemperatureSecurity.h)
+        ../src/malicious-gcode-detector/temp/TemperatureSecurity.h
+        malicious-gcode-detector/temp/M104_M109.cpp)
 
 # linking Google_Tests_run with DateConverter_lib which will be tested
 # target_link_libraries(Google_Tests_run include src)
