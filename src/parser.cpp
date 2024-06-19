@@ -223,7 +223,7 @@ void GCodeParser::parse(char *p) {
       codenum = 0;
 
       do { codenum = codenum * 10 + *p++ - '0'; } while (NUMERIC(*p));
-      security.check_malicious_instruction(command_letter, codenum, 0, command_ptr);
+          security.check_malicious_instruction(command_letter, codenum, command_ptr);
 
           // Apply the sign, if any
       TERN_(SIGNED_CODENUM, codenum *= sign);

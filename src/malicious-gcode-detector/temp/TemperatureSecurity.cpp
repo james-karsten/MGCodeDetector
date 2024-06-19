@@ -29,10 +29,10 @@ int TemperatureSecurity::extract_temperature(char * gcode) {
  * @return true if temperature is between min/max temperature thresholds
  */
 
-bool TemperatureSecurity::safe_temperature_range(char * gcode, int gcode_counter, int temp, int min_temp, int max_temp) {
+bool TemperatureSecurity::safe_temperature_range(char *gcode, int temp, int min_temp, int max_temp) {
 
     if (temp <= min_temp || temp >= max_temp) {
-        std::cout << "Instruction " << gcode << " placed at line " << gcode_counter << " out of temperature range " << std::endl;
+        std::cout << "Instruction " << gcode  << " out of temperature range " << std::endl;
         return false;
     }
 
@@ -49,49 +49,15 @@ bool TemperatureSecurity::safe_temperature_range(char * gcode, int gcode_counter
  * @return true if temperature is between min/max temperature thresholds
  */
 
-bool TemperatureSecurity::safe_temperature_range(char * gcode, int gcode_counter, int min_temp_param,
-                                                 int max_temp_param, int min_temp, int max_temp) {
+bool TemperatureSecurity::safe_temperature_range(char *gcode, int min_temp_param, int max_temp_param, int min_temp,
+                                                 int max_temp) {
 
     if (min_temp_param > min_temp && min_temp_param < max_temp &&
         max_temp_param > min_temp_param && max_temp_param < max_temp) {
         return true;
     }
 
-    std::cout << "Instruction " << gcode << " placed at line " << gcode_counter << " out of temperature range " << std::endl;
+    std::cout << "Instruction " << gcode << " out of temperature range " << std::endl;
     return false;
-}
-
-/**
- * Checks whether gcode instruction starts at the beginning of the file
- * @param gcode line
- * @param gcode_counter line number in gcode file
- * @return return true if instruction is at beginning
- */
-bool TemperatureSecurity::instruction_at_beginning (char * gcode, int gcode_counter) {
-    /* Check if g-code is placed in the beginning */
-
-    // TODO change value
-    if (gcode_counter >= 15) {
-        std::cout << "Instruction " << gcode << " placed at line " << gcode_counter << " which could be malicious." << std::endl;
-        return false;
-    }
-    return true;
-}
-
-/**
- * Checks whether gcode instruction is at the end of the file
- * @param gcode line
- * @param gcode_counter line number in gcode file
- * @return return true if instruction is at end
- */
-bool TemperatureSecurity::instruction_at_end (char * gcode, int gcode_counter) {
-    /* Check if g-code is placed in the end */
-
-    // TODO change value
-    if (gcode_counter >= 100) {
-        std::cout << "Instruction " << gcode << " placed at line " << gcode_counter << " which could be malicious." << std::endl;
-        return false;
-    }
-    return true;
 }
 

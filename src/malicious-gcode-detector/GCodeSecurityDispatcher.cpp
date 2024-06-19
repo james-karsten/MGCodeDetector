@@ -9,17 +9,17 @@
 #include "types.h"
 #include <unordered_set>
 
-void GCodeSecurityDispatcher::check_malicious_instruction(char command_letter, uint16_t codenum, int gcode_counter, char * gcode) {
+void GCodeSecurityDispatcher::check_malicious_instruction(char command_letter, uint16_t codenum, char *gcode) {
 
     GCodeSecurityDispatcher security;
 
     switch (command_letter) {
         case 'M':
             case 104:
-                security.M104_M109(gcode, gcode_counter, codenum);
+                security.M104_M109(gcode);
                 break;
             case 109:
-                security.M104_M109(gcode, gcode_counter, codenum);
+                security.M104_M109(gcode);
                 break;
 
 

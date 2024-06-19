@@ -8,19 +8,19 @@
 #include "../TemperatureSecurity.h"
 #include "../../GCodeSecurityDispatcher.h"
 
-bool GCodeSecurityDispatcher::M104_M109(char * gcode, int gcode_counter, int codenum) {
+bool GCodeSecurityDispatcher::M104_M109(char *gcode) {
     TemperatureSecurity temperatureSecurity;
 
     /* S (mintemp) and B (maxtemp) for possible autotemp command */
     int sParam = 0, bParam = 0, rParam = 0;
 
     /* M109 check wait for cooling */
-    if (m109_wait_cooling(gcode, rParam, gcode_counter)) {
+    if (m109_wait_cooling(gcode, rParam)) {
         return true;
     }
 
     /* Check if M104 uses autotemp and is within bounds of heater */
-    if (m104_m109_autotemp(gcode, sParam, bParam, gcode_counter)) {
+    if (m104_m109_autotemp(gcode, sParam, bParam)) {
         return true;
     }
 
@@ -29,7 +29,7 @@ bool GCodeSecurityDispatcher::M104_M109(char * gcode, int gcode_counter, int cod
 
     /* perform checks with normal S command */
     if (temp != -1) {
-        return temperatureSecurity.safe_temperature_range(gcode, gcode_counter, temp, HEATER_0_MINTEMP, HEATER_0_MAXTEMP);
+        return temperatureSecurity.safe_temperature_range(gcode, temp, HEATER_0_MINTEMP, HEATER_0_MAXTEMP);
     }
 
     return false;
@@ -42,7 +42,7 @@ bool GCodeSecurityDispatcher::M104_M109(char * gcode, int gcode_counter, int cod
  * @param bParam B value in autotemp command
  * @return true if autotemp is used and within bounds, otherwise false
  */
-bool GCodeSecurityDispatcher::m104_m109_autotemp(char *gcode, int &sParam, int &bParam,  int & gcode_counter) {
+bool GCodeSecurityDispatcher::m104_m109_autotemp(char *gcode, int &sParam, int &bParam) {
     // Convert char* to std::string
     std::string gcodeString(gcode);
 
@@ -66,7 +66,7 @@ bool GCodeSecurityDispatcher::m104_m109_autotemp(char *gcode, int &sParam, int &
         }
 
         // check if values are in safe temperature range
-        if(temperatureSecurity.safe_temperature_range(gcode, gcode_counter, sParam, bParam,
+        if(temperatureSecurity.safe_temperature_range(gcode, sParam, bParam,
                                                       HEATER_0_MINTEMP, HEATER_0_MAXTEMP)) {
             return true;
         }
@@ -82,7 +82,7 @@ bool GCodeSecurityDispatcher::m104_m109_autotemp(char *gcode, int &sParam, int &
  * @param bParam B value in autotemp command
  * @return true if autotemp is used and within bounds, otherwise false
  */
-bool GCodeSecurityDispatcher::m109_wait_cooling(char *gcode, int & rParam, int & gcode_counter) {
+bool GCodeSecurityDispatcher::m109_wait_cooling(char *gcode, int &rParam) {
     // Convert char* to std::string
     std::string gcodeString(gcode);
 
@@ -102,7 +102,7 @@ bool GCodeSecurityDispatcher::m109_wait_cooling(char *gcode, int & rParam, int &
         }
 
         //  Check if R command is within bounds
-        if (temperatureSecurity.safe_temperature_range(gcode, gcode_counter, rParam, HEATER_0_MINTEMP, HEATER_0_MAXTEMP)) {
+        if (temperatureSecurity.safe_temperature_range(gcode, rParam, HEATER_0_MINTEMP, HEATER_0_MAXTEMP)) {
             return true;
         }
         return false;

@@ -9,13 +9,12 @@
 class GCodeSecurityDispatcher {
 
 public:
-    static void check_malicious_instruction(char command_letter, uint16_t codenum, int gcode_counter, char * gcode);
+    static void check_malicious_instruction(char command_letter, uint16_t codenum, char *gcode);
 
-    bool M104_M109(char *gcode, int gcode_counter, int codenum);
-
-    bool m104_m109_autotemp(char *gcode, int &sParam, int &bParam,  int & gcode_counter);
-
-    bool m109_wait_cooling(char *gcode, int & rParam, int & gcode_counter);
+    /* M104 / M109 */
+    bool M104_M109(char *gcode);
+    bool m104_m109_autotemp(char *gcode, int &sParam, int &bParam);
+    bool m109_wait_cooling(char *gcode, int &rParam);
 };
 
 

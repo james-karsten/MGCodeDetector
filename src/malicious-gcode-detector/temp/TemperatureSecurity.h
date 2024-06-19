@@ -10,11 +10,9 @@ class TemperatureSecurity {
 
 public:
     static int extract_temperature(char * gcode);
-    static bool safe_temperature_range(char * gcode, int gcode_counter, int temp, int min_temp, int max_temp);
-    static bool safe_temperature_range(char * gcode, int gcode_counter, int min_temp_param, int max_temp_param,
-                                       int min_temp, int max_temp);
-    static bool instruction_at_beginning (char * gcode, int gcode_counter);
-    static bool instruction_at_end (char * gcode, int gcode_counter);
+    static bool safe_temperature_range(char *gcode, int temp, int min_temp, int max_temp);
+    static bool safe_temperature_range(char *gcode, int min_temp_param, int max_temp_param, int min_temp,
+                                       int max_temp);
 };
 
 extern TemperatureSecurity temperatureSecurity;
