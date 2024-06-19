@@ -1,6 +1,6 @@
 project(Google_tests)
 add_subdirectory(lib)
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR} ${gtest_SOURCE_DIR}/src)
 
 # adding the Google_Tests_run target
 add_executable(Google_Tests_run InvalidGCodeParser.cpp)

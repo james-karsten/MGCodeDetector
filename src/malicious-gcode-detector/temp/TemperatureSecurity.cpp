@@ -40,6 +40,28 @@ bool TemperatureSecurity::safe_temperature_range(char * gcode, int gcode_counter
 }
 
 /**
+ * Checks the temperature range using two parameters (for autotemp)
+ * @param gcode line
+ * @param gcode_counter line number in gcode file
+ * @param temp of parameter
+ * @param min_temp minimum temperature threshold
+ * @param max_temp maximum temperature threshold
+ * @return true if temperature is between min/max temperature thresholds
+ */
+
+bool TemperatureSecurity::safe_temperature_range(char * gcode, int gcode_counter, int min_temp_param,
+                                                 int max_temp_param, int min_temp, int max_temp) {
+
+    if (min_temp_param > min_temp && min_temp_param < max_temp &&
+        max_temp_param > min_temp_param && max_temp_param < max_temp) {
+        return true;
+    }
+
+    std::cout << "Instruction " << gcode << " placed at line " << gcode_counter << " out of temperature range " << std::endl;
+    return false;
+}
+
+/**
  * Checks whether gcode instruction starts at the beginning of the file
  * @param gcode line
  * @param gcode_counter line number in gcode file

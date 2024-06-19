@@ -11,13 +11,15 @@
 
 void GCodeSecurityDispatcher::check_malicious_instruction(char command_letter, uint16_t codenum, int gcode_counter, char * gcode) {
 
+    GCodeSecurityDispatcher security;
+
     switch (command_letter) {
         case 'M':
             case 104:
-                M104_M109(gcode, gcode_counter);
+                security.M104_M109(gcode, gcode_counter, codenum);
                 break;
             case 109:
-                M104_M109(gcode, gcode_counter);
+                security.M104_M109(gcode, gcode_counter, codenum);
                 break;
 
 
@@ -26,3 +28,4 @@ void GCodeSecurityDispatcher::check_malicious_instruction(char command_letter, u
             break;
     }
 }
+
