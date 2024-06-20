@@ -15,6 +15,9 @@ public:
     bool M104_M109(char *gcode);
     bool m104_m109_autotemp(char *gcode, int &sParam, int &bParam);
     bool m109_wait_cooling(char *gcode, int &rParam);
+
+    /* M107 */
+    void M107(char *gcode);
 };
 
 

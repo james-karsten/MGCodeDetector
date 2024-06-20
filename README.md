@@ -53,6 +53,12 @@ detection methods
 The M104 and M109 has additional checks if the temperatures are within boundaries.
 This functionality is also implemented when AUTOTEMP is used (examples: https://marlinfw.org/docs/gcode/M104.html)
 
+#### M107
+- Gives warning when instruction is used
+- Checks wheter instruction has subsequent commands. If so, it states it in output. (e.g. If M104 command is invoked after
+the fans are turned off, the printer might get overheated)
+
+
 # Appendices
 
 ## A Subcategories physcial G-code commmands supported by the Marlin firmware

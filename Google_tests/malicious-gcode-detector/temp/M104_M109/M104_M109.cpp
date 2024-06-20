@@ -5,7 +5,7 @@
  * NOTE: most tests were created with the help of GPT4o
  */
 #include <gtest/gtest.h>
-#include "../src/malicious-gcode-detector/GCodeSecurityDispatcher.h"
+#include "../../../../src/malicious-gcode-detector/GCodeSecurityDispatcher.h"
 
 class GCodeSecurityDispatcherTest : public ::testing::Test {
 protected:
