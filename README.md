@@ -53,10 +53,15 @@ detection methods
 The M104 and M109 has additional checks if the temperatures are within boundaries.
 This functionality is also implemented when AUTOTEMP is used (examples: https://marlinfw.org/docs/gcode/M104.html)
 
+#### M106
+- Gives warning when S temperature is set to high
+- Also checks temperature of EXTRA_FAN_SPEED when M106 P<fan> T3-255 is used (examples: https://marlinfw.org/docs/gcode/M106.html). 
+
 #### M107
 - Gives warning when instruction is used
 - Checks wheter instruction has subsequent commands. If so, it states it in output. (e.g. If M104 command is invoked after
 the fans are turned off, the printer might get overheated)
+
 
 
 # Appendices

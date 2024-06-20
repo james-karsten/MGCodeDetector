@@ -18,6 +18,9 @@ public:
 
     /* M107 */
     void M107(char *gcode);
+
+    /* M106*/
+    bool M106(char *gcode);
 };
 
 

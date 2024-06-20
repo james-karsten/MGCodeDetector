@@ -177,7 +177,7 @@ void GCodeParser::parse(char *p) {
 
     // Detect whether gcode line has correct syntax
     std::string gcodeLine(command_ptr);
-    if (!detect_invalid_gcode(command_ptr, ENABLED(GCODE_CASE_INSENSITIVE))){
+    if (!detect_valid_gcode(command_ptr, ENABLED(GCODE_CASE_INSENSITIVE))){
         return;
     };
 
@@ -407,13 +407,13 @@ void GCodeParser::parse(char *p) {
  * This method detects invalid G-code input
  * @return false if input of G-code is invalid, true if it is valid
  */
-bool GCodeParser::detect_invalid_gcode(const std::string &gcode, bool case_insensitive) {
+bool GCodeParser::detect_valid_gcode(const std::string &gcode, bool case_insensitive) {
 
-    std::regex g_pattern(R"(^([GMT]\d+)((\s+[ABCDEFGHIJKLMNOPQRSTUVWXYZ](-?\d+(\.\d*)?)?)*)\s*$)");
+    std::regex g_pattern(R"(^([GMT]\d+)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*$)");
 
     // different G-code pattern if GCode is case-insensitive
     if (case_insensitive) {
-        g_pattern = std::regex(R"(^([GMT]\d+)((\s+[ABCDEFGHIJKLMNOPQRSTUVWXYZ](-?\d+(\.\d*)?)?)*)\s*$)", std::regex_constants::icase);
+        g_pattern = std::regex(R"(^([GMT]\d+)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*$)", std::regex_constants::icase);
     }
 
     if(!std::regex_match(gcode, g_pattern)) {
