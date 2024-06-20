@@ -4,7 +4,6 @@
 
 #include <string>
 #include <regex>
-#include <iostream>
 #include "../TemperatureSecurity.h"
 #include "../../GCodeSecurityDispatcher.h"
 

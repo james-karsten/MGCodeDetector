@@ -19,7 +19,8 @@ add_executable(untitled
         src/malicious-gcode-detector/temp/M104_M109/M104_M109.cpp
         src/malicious-gcode-detector/temp/TemperatureSecurity.cpp
         src/malicious-gcode-detector/temp/TemperatureSecurity.h
-        src/malicious-gcode-detector/temp/M107/M107.cpp)
+        src/malicious-gcode-detector/temp/M107/M107.cpp
+        src/malicious-gcode-detector/temp/M106/M106.cpp)
 
 add_subdirectory(Google_tests)
 #add_subdirectory(Google_tests/lib)
