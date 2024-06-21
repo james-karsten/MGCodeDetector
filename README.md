@@ -46,7 +46,8 @@ This section serves as the description for the Thermal subcategory. The thermal 
 detection methods
 
 - temperature range = checks whether given G-code parameters are within boundaries based on the thresholds of the users configuration file.
-- TODO instruction position = checks where the G-code instruction resides (beginning or end of the file).
+- instruction position = checks where the G-code instruction has subsequent commands. (e.g. turning off fans should not 
+have subsequent commands that require cooling).
 - TODO occurance = checks how many times a thermal instruction occured in a .gco file
 
 #### M104 / M109
@@ -70,6 +71,10 @@ the fans are turned off, the printer might get overheated)
 - If ```M140 S100``` is used, checks on temperature bounds
 - If other format is used, returns false.
 
+#### M143 / M193
+- checks if laser feature is enabled
+- If ```M143/M193 S100``` is used, checks on temperature bounds
+- If ```M143 S0``` is used give user warning
 
 
 # Appendices
