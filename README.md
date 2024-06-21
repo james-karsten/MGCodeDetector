@@ -50,7 +50,7 @@ detection methods
 - TODO occurance = checks how many times a thermal instruction occured in a .gco file
 
 #### M104 / M109
-The M104 and M109 has additional checks if the temperatures are within boundaries.
+- The M104 and M109 has additional checks if the temperatures are within boundaries.
 This functionality is also implemented when AUTOTEMP is used (examples: https://marlinfw.org/docs/gcode/M104.html)
 
 #### M106
@@ -61,6 +61,10 @@ This functionality is also implemented when AUTOTEMP is used (examples: https://
 - Gives warning when instruction is used
 - Checks wheter instruction has subsequent commands. If so, it states it in output. (e.g. If M104 command is invoked after
 the fans are turned off, the printer might get overheated)
+
+#### M140
+- If ```M140 S100``` is used, checks on temperature bounds
+- If ```M140 P1``` is used, check will pass. If any other format is used, returns false.
 
 
 

@@ -40,6 +40,9 @@ void GCodeSecurityDispatcher::check_malicious_instruction(char command_letter, u
                     dangerous_command.push_back(gcode);
                     security.M107(gcode);
                     break;
+                case 140:
+                    security.M140(gcode);
+                    break;
             }
             break;
 
