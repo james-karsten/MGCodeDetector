@@ -27,6 +27,9 @@ public:
 
     /* M141 */
     bool M141(char *gcode);
+
+    /* M141 / M193 */
+    bool M143_M193(char *gcode);
 };
 
 
