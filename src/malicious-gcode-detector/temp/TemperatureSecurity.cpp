@@ -3,6 +3,7 @@
  */
 #include <regex>
 #include <iostream>
+#include <unordered_map>
 #include "TemperatureSecurity.h"
 
 /**
@@ -61,3 +62,35 @@ bool TemperatureSecurity::safe_temperature_range(char *gcode, int min_temp_param
     return false;
 }
 
+/**
+ * This method checks if a gcode matches a regex pattern, if so
+ * It returns with an unordered_map containing the values of the gcode
+ * @param pattern regex
+ * @param gcode line
+ * @return nothing if no match is found, returns params in dict if match was found
+ */
+std::unordered_map<std::string, std::string> TemperatureSecurity::parse_regex_gcode(const std::regex& pattern, const char* gcode) {
+    std::smatch match;
+    std::unordered_map<std::string, std::string> params;
+
+    // Convert char* to std::string
+    std::string gcode_str(gcode);
+
+    // Check if gcode matches
+    if (std::regex_match(gcode_str, match, pattern)) {
+        // Extract the entire matched string
+        std::string matched = match.str(0);
+        std::regex param_pattern(R"(([A-Z])(\d+(\.\d+)?))");
+        std::sregex_iterator iter(matched.begin(), matched.end(), param_pattern);
+        std::sregex_iterator end;
+
+        while (iter != end) {
+            std::smatch param_match = *iter;
+
+            // param_match[1] is the key, param_match[2] is the value
+            params[param_match[1].str()] = param_match[2].str();
+            ++iter;
+        }
+    }
+    return params;
+}

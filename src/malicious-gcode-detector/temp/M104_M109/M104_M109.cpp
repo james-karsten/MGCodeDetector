@@ -108,3 +108,4 @@ bool GCodeSecurityDispatcher::m109_wait_cooling(char *gcode, int &rParam) {
     }
     return false;
 }
+
