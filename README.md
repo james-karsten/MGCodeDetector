@@ -66,6 +66,10 @@ the fans are turned off, the printer might get overheated)
 - If ```M140 S100``` is used, checks on temperature bounds
 - If ```M140 P1``` is used, check will pass. If any other format is used, returns false.
 
+#### M141
+- If ```M140 S100``` is used, checks on temperature bounds
+- If other format is used, returns false.
+
 
 
 # Appendices
