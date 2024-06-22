@@ -29,7 +29,7 @@ TEST_F(GCodeSecurityDispatcherTest, M107GeneratesWarning) {
     std::string output = testing::internal::GetCapturedStdout();
 
     // Verify the output
-    EXPECT_THAT(output, HasSubstr("[Warning]: M107 is invoked which turns off the fans."));
+    EXPECT_THAT(output, HasSubstr("[Warning]: Command [M107] is invoked which turns off the fans.\n"));
 }
 
 int main(int argc, char **argv) {
