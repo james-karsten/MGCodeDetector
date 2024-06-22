@@ -409,11 +409,11 @@ void GCodeParser::parse(char *p) {
  */
 bool GCodeParser::detect_valid_gcode(const std::string &gcode, bool case_insensitive) {
 
-    std::regex g_pattern(R"(^([GMT]\d+)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*$)");
+    std::regex g_pattern(R"(^([GMT]\d+)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$)");
 
     // different G-code pattern if GCode is case-insensitive
     if (case_insensitive) {
-        g_pattern = std::regex(R"(^([GMT]\d+)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*$)", std::regex_constants::icase);
+        g_pattern = std::regex(R"(^([GMT]\d+)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$)", std::regex_constants::icase);
     }
 
     if(!std::regex_match(gcode, g_pattern)) {

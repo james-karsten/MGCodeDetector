@@ -57,7 +57,6 @@ void GCodeSecurityDispatcher::check_malicious_instruction(char command_letter, u
 
 
         default:
-            std::cout << "No match was found";
             break;
     }
 }

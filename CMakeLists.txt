@@ -23,7 +23,9 @@ add_executable(untitled
         src/malicious-gcode-detector/temp/M106/M106.cpp
         src/malicious-gcode-detector/temp/M140/M140.cpp
         src/malicious-gcode-detector/temp/M141/M141.cpp
-        src/malicious-gcode-detector/temp/M143_M193/M143_M193.cpp)
+        src/malicious-gcode-detector/temp/M143_M193/M143_M193.cpp
+        src/gcode-file-reader/GCodeFileReader.cpp
+        src/gcode-file-reader/GCodeFileReader.h)
 
 add_subdirectory(Google_tests)
 #add_subdirectory(Google_tests/lib)
