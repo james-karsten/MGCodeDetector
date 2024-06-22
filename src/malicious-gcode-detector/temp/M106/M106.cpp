@@ -66,7 +66,7 @@ bool GCodeSecurityDispatcher::M106(char *gcode) {
         }
     } else {
         /* Can't find temperature value */
-        std::cout << "[Error]: Temperature value " << temp << " of Gcode " << gcode << " invalid." << std::endl;
+        std::cerr << "[Error]: Temperature value " << temp << " of Gcode command [" << gcode << "] invalid." << std::endl;
     }
 
     return false;

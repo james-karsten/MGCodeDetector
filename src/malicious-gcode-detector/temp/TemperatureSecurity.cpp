@@ -33,7 +33,7 @@ int TemperatureSecurity::extract_temperature(char * gcode) {
 bool TemperatureSecurity::safe_temperature_range(char *gcode, int temp, int min_temp, int max_temp) {
 
     if (temp < min_temp || temp > max_temp) {
-        std::cout << "Instruction " << gcode  << " out of temperature range " << std::endl;
+        std::cout << "[Danger]: Command [" << gcode  << "] out of temperature range " << std::endl;
         return false;
     }
 
@@ -58,7 +58,7 @@ bool TemperatureSecurity::safe_temperature_range(char *gcode, int min_temp_param
         return true;
     }
 
-    std::cout << "Instruction " << gcode << " out of temperature range " << std::endl;
+    std::cout << "[Danger]: Command [" << gcode << "] out of temperature range " << std::endl;
     return false;
 }
 

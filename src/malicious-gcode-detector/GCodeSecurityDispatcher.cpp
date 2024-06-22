@@ -17,7 +17,7 @@ void GCodeSecurityDispatcher::check_malicious_instruction(char command_letter, u
 
     /* check if dangerous command is not empty, thus has subsequent commands */
     if (!dangerous_command.empty()) {
-        std::cout << "[Danger]: Command " << dangerous_command.front() << " contains subsequent commands" << std::endl;
+        std::cout << "[Danger]: Command [" << dangerous_command.front() << "] contains subsequent commands" << std::endl;
 
         /* clears list of dangerous commands*/
         dangerous_command.clear();

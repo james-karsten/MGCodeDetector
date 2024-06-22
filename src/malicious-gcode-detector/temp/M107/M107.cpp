@@ -11,7 +11,7 @@
 void GCodeSecurityDispatcher::M107(char *gcode) {
     /* Warning for unusual command */
     std::string gcodeString(gcode);
-    std::cout << "[Warning]: " << gcodeString << " is invoked which turns off the fans." << std::endl;
+    std::cout << "[Warning]: Command [" << gcodeString << "] is invoked which turns off the fans." << std::endl;
 }
 
 
