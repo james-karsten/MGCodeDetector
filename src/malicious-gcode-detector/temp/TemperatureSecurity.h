@@ -1,7 +1,7 @@
 //
 // Created by james on 18-6-2024.
 //
-
+#pragma once
 #ifndef UNTITLED_TEMPERATURESECURITY_H
 #define UNTITLED_TEMPERATURESECURITY_H
 #include <unordered_map>

@@ -1,7 +1,7 @@
 //
 // Created by james on 14-6-2024.
 //
-
+#pragma once
 #ifndef UNTITLED_GCODESECURITYDISPATCHER_H
 #define UNTITLED_GCODESECURITYDISPATCHER_H
 #include "types.h"
