@@ -34,6 +34,10 @@ This method is added to prevent invalid syntax of G-code from being parsed by th
 
 Tests of this regular expression can be found in the test file _InvalidGCodeParser.cpp_ under the _Google_tests_ folder: https://github.com/james-karsten/MGCodeDetector/blob/invalid-gcode-detection/Google_tests/InvalidGCodeParser.cpp
 
+## 2. GCodeFileReader
+This class takes a .gco file as input and tries to parse each line. It is a fairly simple class.
+It also performs additional checks whether the file is readable and has a .gco file extension.
+
 ## 2. Malicious detection techniques
 
 This section describes several different detection techniques for specific subcategories. The subcategories
