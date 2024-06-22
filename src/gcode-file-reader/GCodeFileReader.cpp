@@ -11,8 +11,8 @@
 void GCodeFileReader::read_gcode_file(const std::string& filename) {
 
     // Check .gco file extension
-    if (filename.size() < 4 || filename.substr(filename.size() - 4) != ".gco") {
-        std::cerr << "File Error: " << filename << " is not a .gco file" << std::endl;
+    if (filename.size() < 6 || filename.substr(filename.size() - 6) != ".gcode") {
+        std::cerr << "File Error: " << filename << " is not a .gcode file" << std::endl;
         return;
     }
 
