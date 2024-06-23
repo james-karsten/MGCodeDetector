@@ -22,8 +22,7 @@ std::list<const char *> cooling_commands = {
         "M193", // Set Laser Cooler Temperature
         "M303", // PID autotune
         "M306", // Model Predictive Temp. Control
-        "M710",// Controller Fan settings
-        "G90"
+        "M710" // Controller Fan settings
 };
 
 // Function to find and remove an item from the list

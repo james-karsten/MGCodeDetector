@@ -15,6 +15,8 @@ bool GCodeSecurityDispatcher::M104_M109(char *gcode) {
 
     /* M109 check wait for cooling */
     if (m109_wait_cooling(gcode, rParam)) {
+
+
         return true;
     }
 

@@ -64,8 +64,20 @@ This functionality is also implemented when AUTOTEMP is used (examples: https://
 
 #### M107
 - Gives warning when instruction is used
-- Checks wheter instruction has subsequent commands. If so, it states it in output. (e.g. If M104 command is invoked after
+- Checks wheter instruction has subsequent commands that require cooling. If so, it states it in output. (e.g. If M104 command is invoked after
 the fans are turned off, the printer might get overheated)
+  - TODO: Functionality of check works. But need to include subsequence of these commands:
+    - "M104", // Set Hotend Temperature
+    - "M109", // Wait for Hotend Temperature
+    - "M140", // Set Bed Temperature
+    - "M141", // Set Chamber Temperature
+    - "M143", // Set Laser Cooler Temperature
+    - "M190", // Wait for Bed Temperature
+    - "M191", // Wait for Chamber Temperature
+    - "M193", // Set Laser Cooler Temperature
+    - "M303", // PID autotune
+    - "M306", // Model Predictive Temp. Control
+    - "M710",// Controller Fan settings
 
 #### M140
 - If ```M140 S100``` is used, checks on temperature bounds.
