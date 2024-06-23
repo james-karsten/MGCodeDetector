@@ -14,6 +14,8 @@ add_executable(Google_Tests_run InvalidGCodeParser.cpp
         ../src/malicious-gcode-detector/temp/M143_M193/M143_M193.cpp
         ../src/malicious-gcode-detector/temp/TemperatureSecurity.cpp
         ../src/malicious-gcode-detector/temp/TemperatureSecurity.h
+        ../src/malicious-gcode-detector/temp/thermal-state/ThermalState.cpp
+        ../src/malicious-gcode-detector/temp/thermal-state/ThermalState.h
         ../src/gcode-file-reader/GCodeFileReader.cpp
         ../src/gcode-file-reader/GCodeFileReader.h
         malicious-gcode-detector/temp/M104_M109/M104_M109.cpp

@@ -9,6 +9,8 @@ int main() {
 
     std::cout << "Done" << std::endl;
 
-//    char testLine2[] = "M143 S400";
+//    char testLine2[] = "M107";
+//    char testLine3[] = "M143 S400";
+//    GCodeParser::parse(testLine2);
 //    GCodeParser::parse(testLine2);
 }

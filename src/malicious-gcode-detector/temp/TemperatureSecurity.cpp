@@ -5,6 +5,7 @@
 #include <iostream>
 #include <unordered_map>
 #include "TemperatureSecurity.h"
+#include "thermal-state/ThermalState.h"
 
 /**
  * This method extracts the temperature value from the M104 M109 command
@@ -93,4 +94,27 @@ std::unordered_map<std::string, std::string> TemperatureSecurity::parse_regex_gc
         }
     }
     return params;
+}
+
+/**
+ * Checks whether specifc command comes after command which could damage printer.
+ * This method considers physical_dangerous_commands_log in the ThermalState
+ * Which keeps track of the dangerous physcial commands.
+ * @param command_letter
+ * @param codenum
+ * @param gcode
+ */
+void TemperatureSecurity::command_position_allowed(std::string instruction) {
+
+    /* get physical_dangerous_commands_log from ThermalState */
+    std::list<const char *> physical_dangerous_command_log = thermalState.get_physical_dangerous_commands_log();
+
+    /* check if command is logged */
+    bool is_dangerous = std::find(physical_dangerous_command_log.begin(), physical_dangerous_command_log.end(), instruction) != physical_dangerous_command_log.end();
+
+    if (is_dangerous) {
+        std::cout << "[Danger]: Command [" << instruction << "] contains subsequent commands that require cooling" << std::endl;
+        // Clear dangerous commands
+        thermalState.remove_item_physical_dangerous_command_log(instruction.c_str());
+    }
 }

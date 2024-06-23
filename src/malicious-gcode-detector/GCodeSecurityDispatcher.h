@@ -32,5 +32,7 @@ public:
     bool M143_M193(char *gcode);
 };
 
+extern GCodeSecurityDispatcher security;
+
 
 #endif //UNTITLED_GCODESECURITYDISPATCHER_H

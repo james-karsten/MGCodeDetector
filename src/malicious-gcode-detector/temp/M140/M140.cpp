@@ -16,8 +16,6 @@ const std::regex m140SetTemperature(R"(^M140\s+S\d+\s*(;.*)?$)");
 /* Regex fir M140 I1 */
 const std::regex pattern(R"(^M140\s+I\d+\s*(;.*)?$)");
 
-TemperatureSecurity temperatureSecurity;
-
 bool GCodeSecurityDispatcher::M140(char *gcode) {
     // match and retrieve gcode params of M140 S100
     std::unordered_map<std::string, std::string> result = temperatureSecurity.parse_regex_gcode(m140SetTemperature, gcode);

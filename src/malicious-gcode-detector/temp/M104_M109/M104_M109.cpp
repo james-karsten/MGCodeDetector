@@ -8,7 +8,7 @@
 #include "../../GCodeSecurityDispatcher.h"
 
 bool GCodeSecurityDispatcher::M104_M109(char *gcode) {
-    TemperatureSecurity temperatureSecurity;
+    //TemperatureSecurity temperatureSecurity;
 
     /* S (mintemp) and B (maxtemp) for possible autotemp command */
     int sParam = 0, bParam = 0, rParam = 0;

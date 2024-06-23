@@ -11,6 +11,7 @@
 #include "../../GCodeSecurityDispatcher.h"
 #include "../TemperatureSecurity.h"
 #include <regex>
+#include "../thermal-state/ThermalState.h"
 
 /* Min and Max speeds Fan */
 const int min_speed = 0;
@@ -22,7 +23,6 @@ const std::regex setFanSpeed(R"(M106 P\d+ T(\d+))");
 
 
 bool GCodeSecurityDispatcher::M106(char *gcode) {
-    TemperatureSecurity temperatureSecurity;
 
     std::string gcodeString(gcode);
     std::smatch matches;
@@ -54,19 +54,29 @@ bool GCodeSecurityDispatcher::M106(char *gcode) {
         return true;
     }
 
-    /* Get temperature */
-    int temp = temperatureSecurity.extract_temperature(gcode);
+    /* Get speed */
+    int speed = temperatureSecurity.extract_temperature(gcode);
 
-    /* Check if temperature is retrieved well */
-    if (temp != -1) {
+    /* check if speed is turned off */
+    if (speed == 0) {
+        /* Remove M107 if it is in dangerous physcial commands */
+        temperatureSecurity.command_position_allowed("M107");
+        return true;
+    }
 
-        /* Check if temperature is within bounds */
-        if (temperatureSecurity.safe_temperature_range(gcode, temp, min_speed, max_speed)) {
+    /* Check if speed is retrieved well */
+    if (speed != -1) {
+
+        /* Check if speed is within bounds */
+        if (temperatureSecurity.safe_temperature_range(gcode, speed, min_speed, max_speed)) {
+
+            /* Remove M107 from log list if speed is within bounds */
+            thermalState.remove_item_physical_dangerous_command_log("M107");
             return true;
         }
     } else {
-        /* Can't find temperature value */
-        std::cerr << "[Error]: Temperature value " << temp << " of Gcode command [" << gcode << "] invalid." << std::endl;
+        /* Can't find speed value */
+        std::cerr << "[Error]: speed value " << speed << " of Gcode command [" << gcode << "] invalid." << std::endl;
     }
 
     return false;
