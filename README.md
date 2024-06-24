@@ -98,6 +98,12 @@ the fans are turned off, the printer might get overheated)
 - ```M190 I1``` return true
 - ```M190 R40``` checks on temp bounds
 - other format gives incorrect format warning
+- 
+#### M191
+- ```M190 S100``` checks on temp bounds
+- ```M190 R40``` checks on temp bounds
+- other format gives incorrect format warning
+
 
 
 # Appendices
