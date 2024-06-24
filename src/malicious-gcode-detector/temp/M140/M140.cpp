@@ -1,7 +1,7 @@
 /**
  * This class detects the M140 commmand
  * When M140 S100 is used, checks on temperature
- * Else, checks is M140 P1 us used
+ * Else, checks is M140 I1 us used
  * If gcode doesn't match formatting of examples above, notify user
  */
 #include <string>
@@ -26,7 +26,7 @@ bool GCodeSecurityDispatcher::M140(char *gcode) {
         return temperatureSecurity.safe_temperature_range(gcode, temp, BED_MINTEMP, BED_MAXTEMP);
     }
 
-    // Check if M140 P1 is used
+    // Check if M140 I1 is used
     result = temperatureSecurity.parse_regex_gcode(pattern, gcode);
     if (!result.empty()) {
         return true;
