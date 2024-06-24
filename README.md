@@ -104,6 +104,12 @@ the fans are turned off, the printer might get overheated)
 - ```M191 R40``` checks on temp bounds
 - other format gives incorrect format warning
 
+#### M303
+- Checks on ```S``` param if in safe temp range 0=hotend -1=bed /
+- Checks on ```E``` param if contains either 0 or -1
+- Checks ```C``` param if it is bigger then 3 (required)
+- Checks if ```PIDTEMP``` and ```PIDTEMPBED``` are enabled for ```M303```command to be used
+- Outputs warning if wrong format is used
 
 
 # Appendices

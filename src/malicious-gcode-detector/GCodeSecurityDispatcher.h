@@ -34,7 +34,11 @@ public:
     /* M190 */
     bool M190(char *gcode);
 
+    /* M191 */
     bool M191(char *gcode);
+
+    /* M303 */
+    bool M303(char *gcode);
 };
 
 extern GCodeSecurityDispatcher security;
