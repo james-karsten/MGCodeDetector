@@ -24,6 +24,7 @@ add_executable(untitled
         src/malicious-gcode-detector/temp/M140/M140.cpp
         src/malicious-gcode-detector/temp/M141/M141.cpp
         src/malicious-gcode-detector/temp/M143_M193/M143_M193.cpp
+        src/malicious-gcode-detector/temp/M190/M190.cpp
         src/gcode-file-reader/GCodeFileReader.cpp
         src/gcode-file-reader/GCodeFileReader.h
         src/malicious-gcode-detector/temp/thermal-state/ThermalState.h
