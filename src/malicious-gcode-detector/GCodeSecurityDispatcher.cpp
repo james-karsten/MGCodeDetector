@@ -3,25 +3,11 @@
  *
  */
 
-#include <iostream>
 #include "GCodeSecurityDispatcher.h"
 #include "types.h"
-#include <vector>
 
-/* commands that can't have subsequent commands */
-std::vector<char*> dangerous_command = { };
 
 void GCodeSecurityDispatcher::check_malicious_instruction(char command_letter, uint16_t codenum, char *gcode) {
-
-    GCodeSecurityDispatcher security;
-
-    /* check if dangerous command is not empty, thus has subsequent commands */
-    if (!dangerous_command.empty()) {
-        std::cout << "[Danger]: Command " << dangerous_command.front() << " contains subsequent commands" << std::endl;
-
-        /* clears list of dangerous commands*/
-        dangerous_command.clear();
-    }
 
     switch (command_letter) {
         case 'M':
@@ -36,8 +22,6 @@ void GCodeSecurityDispatcher::check_malicious_instruction(char command_letter, u
                     security.M106(gcode);
                     break;
                 case 107:
-                    /* push M107 to dangerous command (can't have subsequent commands) */
-                    dangerous_command.push_back(gcode);
                     security.M107(gcode);
                     break;
                 case 140:

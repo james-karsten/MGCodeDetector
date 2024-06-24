@@ -12,11 +12,9 @@
 #include "../TemperatureSecurity.h"
 
 /* Regex for M140 S100 */
-const std::regex m140SetTemperature(R"(^M140\s+S\d+$)");
-/* Regex fir M140 P1 */
-const std::regex pattern(R"(^M140\s+P\d+$)");
-
-TemperatureSecurity temperatureSecurity;
+const std::regex m140SetTemperature(R"(^M140\s+S\d+\s*(;.*)?$)");
+/* Regex fir M140 I1 */
+const std::regex pattern(R"(^M140\s+I\d+\s*(;.*)?$)");
 
 bool GCodeSecurityDispatcher::M140(char *gcode) {
     // match and retrieve gcode params of M140 S100
@@ -35,7 +33,7 @@ bool GCodeSecurityDispatcher::M140(char *gcode) {
     }
 
     /* incorrect formatting M104 command*/
-    std::cout << "[Warning]: Incorrect formatting of command: " << gcode << " " << std::endl;
+    std::cout << "[Warning]: Incorrect formatting of command [" << gcode << "]" << std::endl;
     return false;
 }
 

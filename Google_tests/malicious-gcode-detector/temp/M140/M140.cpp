@@ -17,7 +17,7 @@ TEST_F(GCodeSecurityDispatcherTest, M140_correct_temp) {
 }
 
 TEST_F(GCodeSecurityDispatcherTest, M140_correct_format) {
-    char gcode[] = "M140 P1";
+    char gcode[] = "M140 I1";
     EXPECT_TRUE(dispatcher.M140(gcode));
 }
 
@@ -37,11 +37,11 @@ TEST_F(GCodeSecurityDispatcherTest, M140_incorrect_format) {
 }
 
 TEST_F(GCodeSecurityDispatcherTest, M140_incorrect_format_2) {
-    char gcode[] = "M140 P-1";
+    char gcode[] = "M140 I-1";
     EXPECT_FALSE(dispatcher.M140(gcode));
 }
 
 TEST_F(GCodeSecurityDispatcherTest, M140_incorrect_format_3) {
-    char gcode[] = "M140 P1.1";
+    char gcode[] = "M140 I1.1";
     EXPECT_FALSE(dispatcher.M140(gcode));
 }

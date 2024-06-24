@@ -22,7 +22,7 @@ bool GCodeSecurityDispatcher::M143_M193(char *gcode) {
 
         /* return true if laser cooler is turned off */
         if (!result.empty()) {
-            std::cout << "[Warning] M143_M193 command: " << gcode << " laser cooler turned off." << std::endl;
+            std::cout << "[Warning]: Command [" << gcode << "] laser cooler turned off." << std::endl;
             return true;
         }
 
@@ -35,11 +35,11 @@ bool GCodeSecurityDispatcher::M143_M193(char *gcode) {
 
             return temperatureSecurity.safe_temperature_range(gcode, temp, COOLER_MINTEMP, COOLER_MAXTEMP);
         } else {
-            std::cout << "[Error] M143_M193 command: " << gcode << " not possible due incorrect formatting." << std::endl;
+            std::cout << "[Error]: Command [" << gcode << "] not possible due incorrect formatting." << std::endl;
             return false;
         }
     #endif
 
-    std::cout << "[Error] M143_M193 command: " << gcode << " not possible due laser feature not enabled in configuration." << std::endl;
+    std::cout << "[Error]: Command: " << gcode << " not possible due laser feature not enabled in configuration." << std::endl;
     return false;
 }

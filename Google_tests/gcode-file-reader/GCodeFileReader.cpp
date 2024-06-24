@@ -19,12 +19,12 @@ TEST_F(GCodeFileReaderTest, ValidFileExtension) {
     testing::internal::CaptureStderr();
     GCodeFileReader::read_gcode_file("gcode.txt");
     std::string output = testing::internal::GetCapturedStderr();
-    EXPECT_EQ(output, "File Error: gcode.txt is not a .gco file\n");
+    EXPECT_EQ(output, "File Error: gcode.txt is not a .gcode file\n");
 }
 
 TEST_F(GCodeFileReaderTest, ValidFileExtensionNonExist) {
     testing::internal::CaptureStderr();
-    GCodeFileReader::read_gcode_file("test.gco");
+    GCodeFileReader::read_gcode_file("test.gcode");
     std::string output = testing::internal::GetCapturedStderr();
-    EXPECT_EQ(output, "File Error: Could not open file test.gco\n");
+    EXPECT_EQ(output, "File Error: Could not open file test.gcode\n");
 }

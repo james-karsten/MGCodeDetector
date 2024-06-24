@@ -109,6 +109,6 @@ TEST_F(GCodeSecurityDispatcherTest, M143_M193_incorrect_config) {
         std::string output = testing::internal::GetCapturedStdout();
 
         // Verify the output
-        EXPECT_THAT(output, HasSubstr("[Error] M143_M193 command: M143 S10 not possible due laser feature not enabled in configuration."));
+        EXPECT_THAT(output, HasSubstr("[Error]: Command: M143 S10 not possible due laser feature not enabled in configuration.\n"));
 #endif
 }

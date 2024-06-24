@@ -6,6 +6,7 @@
 #define UNTITLED_TEMPERATURESECURITY_H
 #include <unordered_map>
 #include <regex>
+#include <list>
 
 class TemperatureSecurity {
 
@@ -15,6 +16,8 @@ public:
     static bool safe_temperature_range(char *gcode, int min_temp_param, int max_temp_param, int min_temp,
                                        int max_temp);
     static std::unordered_map<std::string, std::string> parse_regex_gcode(const std::regex& pattern, const char* gcode);
+
+    static void command_position_allowed(std::string instruction);
 };
 
 extern TemperatureSecurity temperatureSecurity;
