@@ -4,7 +4,8 @@
 #include "../src/gcode-file-reader/GCodeFileReader.h"
 
 int main() {
-    std::string filename = "C:\\Users\\james\\CLionProjects\\untitled\\files\\gcode\\Prusa_200um_MINI_PLA_23m.gcode";
+    // std::string filename = "C:\\Users\\james\\CLionProjects\\untitled\\files\\gcode\\Prusa_200um_MINI_PLA_23m.gcode";
+    std::string filename = "C:\\Users\\james\\CLionProjects\\untitled\\files\\gcode\\tests\\M107\\M107_valid_gcode.gcode";
     GCodeFileReader::read_gcode_file(filename);
 
     std::cout << "Done" << std::endl;

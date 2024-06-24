@@ -6,6 +6,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "../../../../src/malicious-gcode-detector/GCodeSecurityDispatcher.h"
+#include "../../../../src/gcode-file-reader/GCodeFileReader.h"
 #include <string>
 
 using testing::HasSubstr;
@@ -30,6 +31,25 @@ TEST_F(GCodeSecurityDispatcherTest, M107GeneratesWarning) {
 
     // Verify the output
     EXPECT_THAT(output, HasSubstr("[Warning]: Command [M107] is invoked which turns off the fans.\n"));
+}
+
+TEST_F(GCodeSecurityDispatcherTest, M107ValidGcode106FansOn) {
+
+    testing::internal::CaptureStdout();
+    GCodeFileReader::read_gcode_file(R"(C:\Users\james\CLionProjects\untitled\files\gcode\tests\M107\M107_valid_gcode.gcode)");
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "[Warning]: Command [M107 ; turn off fans] is invoked which turns off the fans.\n");
+
+}
+
+TEST_F(GCodeSecurityDispatcherTest, M107InValidGcode106FansOff) {
+
+    testing::internal::CaptureStdout();
+    GCodeFileReader::read_gcode_file(R"(C:\Users\james\CLionProjects\untitled\files\gcode\tests\M107\M107_invalid_gcode.gcode)");
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "[Warning]: Command [M107 ; turn off fans] is invoked which turns off the fans.\n[Danger]: Command [M107] contains subsequent commands that require cooling\n");
+
+
 }
 
 int main(int argc, char **argv) {
