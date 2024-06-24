@@ -100,8 +100,8 @@ the fans are turned off, the printer might get overheated)
 - other format gives incorrect format warning
 - 
 #### M191
-- ```M190 S100``` checks on temp bounds
-- ```M190 R40``` checks on temp bounds
+- ```M191 S100``` checks on temp bounds
+- ```M191 R40``` checks on temp bounds
 - other format gives incorrect format warning
 
 
