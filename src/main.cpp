@@ -10,17 +10,17 @@ int main() {
 //
 //    std::cout << "Done" << std::endl;
 
-    char testLine2[] = "M190 I3";
-    char testLine3[] = "M190 S80";
-    char testLine4[] = "M190 S830";
-    char testLine5[] = "M190 S0";
-    char testLine6[] = "M190 R40";
-    char testLine7[] = "M190 R9000";
-    char testLine8[] = "M190 R0";
-    char testLine9[] = "M190 R0 T600";
-    char testLine10[] = "M190 R39 T600";
-    char testLine11[] = "M190 R39 X10 T600";
-    char testLine12[] = "M190 Z0 X10";
+    char testLine2[] = "M191 I3";
+    char testLine3[] = "M191 S80.3";
+    char testLine4[] = "M191 S830";
+    char testLine5[] = "M191 S0";
+    char testLine6[] = "M191 R40";
+    char testLine7[] = "M191 R9000";
+    char testLine8[] = "M191 R0";
+    char testLine9[] = "M191 R0,0";
+    char testLine10[] = "M191 R-1000";
+    char testLine11[] = "M191 Rxxx";
+    char testLine12[] = "M191 S40";
     GCodeParser::parse(testLine2);
     GCodeParser::parse(testLine3);
     GCodeParser::parse(testLine4);

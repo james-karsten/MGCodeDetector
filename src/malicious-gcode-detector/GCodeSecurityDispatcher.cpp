@@ -36,6 +36,9 @@ void GCodeSecurityDispatcher::check_malicious_instruction(char command_letter, u
                 case 190:
                     security.M190(gcode);
                     break;
+                case 191:
+                    security.M191(gcode);
+                    break;
                 case 193:
                     security.M143_M193(gcode);
                     break;
