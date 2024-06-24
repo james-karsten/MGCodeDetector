@@ -105,10 +105,11 @@ the fans are turned off, the printer might get overheated)
 - other format gives incorrect format warning
 
 #### M303
-- Checks if ```BED_ANNEALING_GCODE``` is enabled
-- ```M191 S100``` checks on temp bounds
-- ```M191 R40``` checks on temp bounds
-- other format gives incorrect format warning
+- Checks on ```S``` param if in safe temp range 0=hotend -1=bed /
+- Checks on ```E``` param if contains either 0 or -1
+- Checks ```C``` param if it is bigger then 3 (required)
+- Checks if ```PIDTEMP``` and ```PIDTEMPBED``` are enabled for ```M303```command to be used
+- Outputs warning if wrong format is used
 
 
 # Appendices
