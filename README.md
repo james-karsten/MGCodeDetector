@@ -104,6 +104,11 @@ the fans are turned off, the printer might get overheated)
 - ```M191 R40``` checks on temp bounds
 - other format gives incorrect format warning
 
+#### M303
+- Checks if ```BED_ANNEALING_GCODE``` is enabled
+- ```M191 S100``` checks on temp bounds
+- ```M191 R40``` checks on temp bounds
+- other format gives incorrect format warning
 
 
 # Appendices

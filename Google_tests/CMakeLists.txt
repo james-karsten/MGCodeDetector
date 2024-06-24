@@ -14,6 +14,7 @@ add_executable(Google_Tests_run InvalidGCodeParser.cpp
         ../src/malicious-gcode-detector/temp/M143_M193/M143_M193.cpp
         ../src/malicious-gcode-detector/temp/M190/M190.cpp
         ../src/malicious-gcode-detector/temp/M191/M191.cpp
+        ../src/malicious-gcode-detector/temp/M303/M303.cpp
         ../src/malicious-gcode-detector/temp/TemperatureSecurity.cpp
         ../src/malicious-gcode-detector/temp/TemperatureSecurity.h
         ../src/malicious-gcode-detector/temp/thermal-state/ThermalState.cpp
@@ -29,6 +30,7 @@ add_executable(Google_Tests_run InvalidGCodeParser.cpp
         malicious-gcode-detector/temp/M190/M190.cpp
         gcode-file-reader/GCodeFileReader.cpp
         malicious-gcode-detector/temp/M191/M191.cpp
+        malicious-gcode-detector/temp/M303/M303.cpp
 )
 
 # linking Google_Tests_run with DateConverter_lib which will be tested
