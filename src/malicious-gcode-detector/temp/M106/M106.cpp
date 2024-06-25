@@ -13,10 +13,6 @@
 #include <regex>
 #include "../thermal-state/ThermalState.h"
 
-/* Min and Max speeds Fan */
-const int min_speed = 0;
-const int max_speed = 255;
-
 /* Regex expression for EXTRA_FAN_SPEED */
 const std::regex extraFanSpeed(R"(M106 P\d+ T\d+-(\d+))");
 const std::regex setFanSpeed(R"(M106 P\d+ T(\d+))");
@@ -42,7 +38,7 @@ bool GCodeSecurityDispatcher::M106(char *gcode) {
 
                 /* retrieve speed from gcode */
                 int speed = std::stoi(matches[1].str());
-                return temperatureSecurity.safe_temperature_range(gcode, speed, min_speed, max_speed);
+                return temperatureSecurity.safe_temperature_range(gcode, speed, MIN_FAN_SPEED, MAX_FAN_SPEED);
             }
         #endif
     } else if (std::regex_search(gcodeString, matches, setFanSpeed)) { // M106 P2 T2
@@ -68,7 +64,7 @@ bool GCodeSecurityDispatcher::M106(char *gcode) {
     if (speed != -1) {
 
         /* Check if speed is within bounds */
-        if (temperatureSecurity.safe_temperature_range(gcode, speed, min_speed, max_speed)) {
+        if (temperatureSecurity.safe_temperature_range(gcode, speed, MIN_FAN_SPEED, MAX_FAN_SPEED)) {
 
             /* Remove M107 from log list if speed is within bounds */
             thermalState.remove_item_physical_dangerous_command_log("M107");

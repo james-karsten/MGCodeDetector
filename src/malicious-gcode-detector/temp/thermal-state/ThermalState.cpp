@@ -9,6 +9,9 @@
 #include "ThermalState.h"
 #include <string.h>
 // initialize lists
+const int MIN_FAN_SPEED = 0;
+const int MAX_FAN_SPEED = 255;
+
 std::list<const char *> physical_dangerous_commands_log = {};
 
 std::list<const char *> cooling_commands = {

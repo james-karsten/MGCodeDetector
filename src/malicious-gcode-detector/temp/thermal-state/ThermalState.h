@@ -7,6 +7,11 @@
 #include <list>
 #include <string>
 
+/* FAN SPEED */
+/* Min and Max speeds Fan */
+extern const int MIN_FAN_SPEED;
+extern const int MAX_FAN_SPEED;
+
 /* commands that can't have subsequent commands */
 extern std::list<const char *> physical_dangerous_commands_log;
 

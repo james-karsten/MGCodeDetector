@@ -39,6 +39,8 @@ public:
 
     /* M303 */
     bool M303(char *gcode);
+
+    bool M710(char *gcode);
 };
 
 extern GCodeSecurityDispatcher security;
