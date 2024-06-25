@@ -111,6 +111,11 @@ the fans are turned off, the printer might get overheated)
 - Checks if ```PIDTEMP``` and ```PIDTEMPBED``` are enabled for ```M303```command to be used
 - Outputs warning if wrong format is used
 
+#### M710
+- Checks if ```CONTROLLER_FAN_EDITABLE``` is enabled in the configuration.
+- Checks if ```I``` parameter is within temp bounds
+- Checks if ```S``` parameter is within temp bounds
+- Checks formatting of command
 
 # Appendices
 

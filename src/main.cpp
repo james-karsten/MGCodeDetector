@@ -10,15 +10,15 @@ int main() {
 //
 //    std::cout << "Done" << std::endl;
 
-    char testLine2[] = "M303 E0 C8 S210";
-    char testLine3[] = "M303 E-1 C8 S210";
-    char testLine4[] = "M303 E10 C8 S210";
-    char testLine5[] = "M303 E0 C8 S2100";
-    char testLine6[] = "M303 E-1 C8 S210";
-    char testLine7[] = "M303 E0 C8 S210.5";
-    char testLine8[] = "M303 D E-1 C8 S21.5";
-    char testLine9[] = "M303 C8 S210 U";
-    char testLine10[] = "M303 S210";
+    char testLine2[] = "M710 A1 S255 I128";
+    char testLine3[] = "M710 A0 S255";
+    char testLine4[] = "M710 R";
+    char testLine5[] = "M710 A0 S2550";
+    char testLine6[] = "M710 A1 S245 I1228";
+    char testLine7[] = "M710 A1 S2245 I28";
+    char testLine8[] = "M710 A1 S0 I20.8";
+    char testLine9[] = "M710 A1 S2245.8 I28";
+    char testLine10[] = "M710 A1 S255 I0";
     char testLine11[] = "M303 S0 U";
     char testLine12[] = "M303 S5210";
     char testLine13[] = "M303 E3 C8 S21";
