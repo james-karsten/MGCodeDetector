@@ -25,7 +25,7 @@ bool GCodeSecurityDispatcher::M710(char *gcode){
         /* Check I and S params if they are OK. */
         if (result.find("I") != result.end()) {
             int speed = std::stoi(result.at("I"));
-            if (!temperatureSecurity.safe_temperature_range(gcode, speed, MIN_FAN_SPEED, MAX_FAN_SPEED)) {
+            if (!temperatureSecurity.safe_range(gcode, speed, MIN_FAN_SPEED, MAX_FAN_SPEED)) {
                 return false;
             }
         }
@@ -33,7 +33,7 @@ bool GCodeSecurityDispatcher::M710(char *gcode){
         // Check if S param is within temp bounds
         if (result.find("S") != result.end()) {
             int speed = std::stoi(result.at("S"));
-            if (!temperatureSecurity.safe_temperature_range(gcode, speed, MIN_FAN_SPEED, MAX_FAN_SPEED)) {
+            if (!temperatureSecurity.safe_range(gcode, speed, MIN_FAN_SPEED, MAX_FAN_SPEED)) {
                 return false;
             }
         }
@@ -41,4 +41,5 @@ bool GCodeSecurityDispatcher::M710(char *gcode){
         std::cout << "[Error]: Command: [" << gcode << "] not possible due CONTROLLER_FAN_EDITABLE not enabled in configuration." << std::endl;
         return false;
     #endif
+    return false;
 }

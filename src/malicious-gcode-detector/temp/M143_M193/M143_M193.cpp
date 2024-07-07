@@ -7,10 +7,10 @@
 #include <regex>
 
 /* Regex for M143/M193 S100 */
-const std::regex m143m193SetTemperature(R"(^M1[49]3\s+S\d+$)");
+const std::regex m143m193SetTemperature(R"(^M1[49]3\s+S\d+\s*(;.*)?$)");
 
 /* Regex for turning off laser cooler */
-const std::regex m143TurnLaserCoolerOff(R"(^M143\s+S0$)");
+const std::regex m143TurnLaserCoolerOff(R"(^M143\s+S0\s*(;.*)?$)");
 
 bool GCodeSecurityDispatcher::M143_M193(char *gcode) {
 
@@ -33,7 +33,7 @@ bool GCodeSecurityDispatcher::M143_M193(char *gcode) {
         if (!result.empty()) {
             int temp = stoi(result.at("S"));
 
-            return temperatureSecurity.safe_temperature_range(gcode, temp, COOLER_MINTEMP, COOLER_MAXTEMP);
+            return temperatureSecurity.safe_range(gcode, temp, COOLER_MINTEMP, COOLER_MAXTEMP);
         } else {
             std::cout << "[Error]: Command [" << gcode << "] not possible due incorrect formatting." << std::endl;
             return false;

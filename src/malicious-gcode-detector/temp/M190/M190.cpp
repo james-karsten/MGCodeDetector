@@ -37,11 +37,11 @@ bool GCodeSecurityDispatcher::M190(char *gcode) {
 
         switch (commandType) {
             case 'S':
-                return temperatureSecurity.safe_temperature_range(gcode, paramValue, BED_MINTEMP, BED_MAXTEMP);
+                return temperatureSecurity.safe_range(gcode, paramValue, BED_MINTEMP, BED_MAXTEMP);
             case 'I':
                 return true;
             case 'R':
-                return temperatureSecurity.safe_temperature_range(gcode, paramValue, BED_MINTEMP, BED_MAXTEMP);
+                return temperatureSecurity.safe_range(gcode, paramValue, BED_MINTEMP, BED_MAXTEMP);
             default:
                 break;
         }

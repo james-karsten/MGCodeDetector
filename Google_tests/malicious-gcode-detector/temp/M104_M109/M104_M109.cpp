@@ -1,7 +1,6 @@
 /**
  * The tests aim to test the methods M104_M109(), m109_wait_cooling() and m104_m109_autotemp()
  * of the M104_M109 instructions.
- * TODO: structure tests in organized matter
  * NOTE: most tests were created with the help of GPT4o
  */
 #include <gtest/gtest.h>

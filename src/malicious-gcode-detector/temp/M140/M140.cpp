@@ -23,7 +23,7 @@ bool GCodeSecurityDispatcher::M140(char *gcode) {
     /* check if result is not empty */
     if (!result.empty()) {
         int temp = stoi(result.at("S"));
-        return temperatureSecurity.safe_temperature_range(gcode, temp, BED_MINTEMP, BED_MAXTEMP);
+        return temperatureSecurity.safe_range(gcode, temp, BED_MINTEMP, BED_MAXTEMP);
     }
 
     // Check if M140 I1 is used

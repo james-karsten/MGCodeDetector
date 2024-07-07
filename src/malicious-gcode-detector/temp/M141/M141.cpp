@@ -11,7 +11,7 @@
 #include "../TemperatureSecurity.h"
 
 /* Regex for M140 S100 */
-const std::regex m141SetTemperature(R"(^M141\s+S\d+$)");
+const std::regex m141SetTemperature(R"(^M141\s+S\d+\s*(;.*)?$)");
 
 bool GCodeSecurityDispatcher::M141(char *gcode) {
     // match and retrieve gcode params of M140 S100
@@ -20,7 +20,12 @@ bool GCodeSecurityDispatcher::M141(char *gcode) {
     /* check if result is not empty */
     if (!result.empty()) {
         int temp = stoi(result.at("S"));
-        return temperatureSecurity.safe_temperature_range(gcode, temp, CHAMBER_MINTEMP, CHAMBER_MAXTEMP);
+
+        /* return if temp == 0*/
+        if (temp == 0) {
+            return true;
+        }
+        return temperatureSecurity.safe_range(gcode, temp, CHAMBER_MINTEMP, CHAMBER_MAXTEMP);
     }
 
     /* incorrect formatting M104 command*/

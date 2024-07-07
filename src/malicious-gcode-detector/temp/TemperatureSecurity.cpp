@@ -25,16 +25,16 @@ int TemperatureSecurity::extract_temperature(char * gcode) {
  * Checks the temperature range
  * @param gcode line
  * @param gcode_counter line number in gcode file
- * @param temp of parameter
- * @param min_temp minimum temperature threshold
- * @param max_temp maximum temperature threshold
+ * @param value of parameter
+ * @param min_value minimum temperature threshold
+ * @param max_value maximum temperature threshold
  * @return true if temperature is between min/max temperature thresholds
  */
 
-bool TemperatureSecurity::safe_temperature_range(char *gcode, int temp, int min_temp, int max_temp) {
+bool TemperatureSecurity::safe_range(char *gcode, int value, int min_value, int max_value) {
 
-    if (temp < min_temp || temp > max_temp) {
-        std::cout << "[Danger]: Command [" << gcode  << "] out of temperature range " << std::endl;
+    if (value < min_value || value > max_value) {
+        std::cout << "[Danger]: Command [" << gcode  << "] out of range " << std::endl;
         return false;
     }
 
@@ -46,20 +46,20 @@ bool TemperatureSecurity::safe_temperature_range(char *gcode, int temp, int min_
  * @param gcode line
  * @param gcode_counter line number in gcode file
  * @param temp of parameter
- * @param min_temp minimum temperature threshold
- * @param max_temp maximum temperature threshold
+ * @param min_value minimum temperature threshold
+ * @param max_value maximum temperature threshold
  * @return true if temperature is between min/max temperature thresholds
  */
 
-bool TemperatureSecurity::safe_temperature_range(char *gcode, int min_temp_param, int max_temp_param, int min_temp,
-                                                 int max_temp) {
+bool TemperatureSecurity::safe_range(char *gcode, int min_value_param, int max_value_param, int min_value,
+                                     int max_value) {
 
-    if (min_temp_param >= min_temp && min_temp_param <= max_temp &&
-        max_temp_param >= min_temp_param && max_temp_param <= max_temp) {
+    if (min_value_param >= min_value && min_value_param <= max_value &&
+        max_value_param >= min_value_param && max_value_param <= max_value) {
         return true;
     }
 
-    std::cout << "[Danger]: Command [" << gcode << "] out of temperature range " << std::endl;
+    std::cout << "[Danger]: Command [" << gcode << "] out of range " << std::endl;
     return false;
 }
 

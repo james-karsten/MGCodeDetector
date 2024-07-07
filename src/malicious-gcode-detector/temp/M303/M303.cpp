@@ -49,15 +49,15 @@ bool GCodeSecurityDispatcher::M303(char *gcode){
             switch (eParam) {
                 case 0:
                     /* Check against Hotend threshold */
-                    return temperatureSecurity.safe_temperature_range(gcode, sParam, HEATER_0_MINTEMP, HEATER_0_MAXTEMP);
+                    return temperatureSecurity.safe_range(gcode, sParam, HEATER_0_MINTEMP, HEATER_0_MAXTEMP);
                 case -1:
                     /* Check against temp bed threshold*/
-                    return temperatureSecurity.safe_temperature_range(gcode, sParam, BED_MINTEMP, BED_MAXTEMP);
+                    return temperatureSecurity.safe_range(gcode, sParam, BED_MINTEMP, BED_MAXTEMP);
                 default:
                     break;
             }
         } else {
-            return temperatureSecurity.safe_temperature_range(gcode, sParam, HEATER_0_MINTEMP, HEATER_0_MAXTEMP);
+            return temperatureSecurity.safe_range(gcode, sParam, HEATER_0_MINTEMP, HEATER_0_MAXTEMP);
         }
 
         // Incorrect formatting of command

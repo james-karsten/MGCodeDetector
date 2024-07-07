@@ -56,7 +56,7 @@ TEST_F(GCodeSecurityDispatcherTest, M143_M193_incorrect_format) {
     std::string output = testing::internal::GetCapturedStdout();
 
     // Verify the output
-    EXPECT_THAT(output, HasSubstr("[Error] M143_M193 command: M193 S-100 not possible due incorrect formatting."));
+    EXPECT_THAT(output, HasSubstr("[Error]: Command [M193 S-100] not possible due incorrect formatting.\n"));
 #endif
 }
 
@@ -73,7 +73,7 @@ TEST_F(GCodeSecurityDispatcherTest, M143_M193_incorrect_format_2) {
     std::string output = testing::internal::GetCapturedStdout();
 
     // Verify the output
-    EXPECT_THAT(output, HasSubstr("[Error] M143_M193 command: M143 S-100 not possible due incorrect formatting."));
+    EXPECT_THAT(output, HasSubstr("[Error]: Command [M143 S-100] not possible due incorrect formatting.\n"));
 #endif
 }
 
@@ -90,7 +90,7 @@ TEST_F(GCodeSecurityDispatcherTest, M143_M193_laser_off) {
     std::string output = testing::internal::GetCapturedStdout();
 
     // Verify the output
-    EXPECT_THAT(output, HasSubstr("[Warning] M143_M193 command: M143 S0 laser cooler turned off."));
+    EXPECT_THAT(output, HasSubstr("[Warning]: Command [M143 S0] laser cooler turned off.\n"));
 #endif
 }
 
