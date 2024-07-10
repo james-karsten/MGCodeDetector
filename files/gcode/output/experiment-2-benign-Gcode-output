@@ -1,0 +1,92 @@
+Note that only the M107 is given as a warning, which will always be the case whenever M107 is invoked.
+
+C:\Users\james\CLionProjects\untitled\cmake-build-debug\untitled.exe
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_1.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_10.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_11.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_12.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_13.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_14.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_15.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_16.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_17.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_18.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_19.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_2.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_20.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_3.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_4.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_5.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_6.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_7.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_8.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_9.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_1.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_10.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_11.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_12.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_13.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_14.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_15.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_16.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_17.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_18.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_19.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_2.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_20.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_3.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_4.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_5.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_6.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_7.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_8.gcode
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\benign\benign_gcode_mixed_9.gcode
+
+Done
+
+Process finished with exit code 0

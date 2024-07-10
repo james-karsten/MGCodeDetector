@@ -1,0 +1,228 @@
+Ouput of experiment 2 in main.cpp
+
+C:\Users\james\CLionProjects\untitled\cmake-build-debug\untitled.exe
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_01.gcode
+[Danger]: Command [M104 S300 ; Set extruder temperature to 300░C] out of range
+[Danger]: Command [M109 S300 ; Wait for extruder to reach 300░C] out of range
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+[Danger]: Command [M104 S1 ; temp to low] out of range
+[Danger]: Command [M109 S1 ; temp to low] out of range
+[Error]: Incorrect formatting or temperature value of command [M104 X1 ; wrong param]
+[Error]: Incorrect formatting or temperature value of command [M109 Z5 ; wrong param]
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_02.gcode
+[Danger]: Command [M106 S257 ; Set fan speed to maximum] out of range
+[Error]: speed value or formatting of Gcode command [M106 S-100 ; invalid number] invalid.
+[Error]: speed value or formatting of Gcode command [M106 G45 X1 ; invalid params] invalid.
+[Error]: speed value or formatting of Gcode command [M106  ; without params] invalid.
+[Warning]: Command [M107 ; Turn off fan] is invoked which turns off the laser.
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_03.gcode
+[Warning]: Command [M107 ; Turn off fan] is invoked which turns off the laser.
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_04.gcode
+[Danger]: Command [M140 S300 ; Ensure bed temperature is set to 300´┐¢C] out of range
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+[Danger]: Command [M140 S4 ; out of range] out of range
+[Error]: Incorrect formatting or temperature value of command [M140 S-100 ; out of range]
+[Error]: Incorrect formatting or temperature value of command [M140 X1 Y1 Z1 ; wrong params]
+[Warning]: Command [M306 ; Invoked warning when M306 command is invoked] is invoked which tunes the Model Predictive Tem
+perature Control.
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_05.gcode
+[Danger]: Command [M141 S80 ; Set chamber temperature to 80´┐¢C] out of range
+[Danger]: Command [M141 S600 ; Ensure chamber temperature is set to 600´┐¢C] out of range
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+[Error]: Incorrect formatting or temperature value [M141 S-100 ; wrong number]
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_06.gcode
+[Error]: Incorrect formatting or temperature value [M141 X1 Y4 ; wrong params]
+[Danger]: Command [M143 S300 ; Set maximum hot-end temperature to 300´┐¢C] out of range
+[Danger]: Command [M193 S280 ; Stabilize temperature at 280´┐¢C] out of range
+[Danger]: Command [M143 S300 ; Ensure maximum hot-end temperature is set to 300´┐¢C] out of range
+[Danger]: Command [M193 S280 ; Ensure temperature stabilizes at 280´┐¢C] out of range
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+[Danger]: Command [M143 S4 ; Below threshold] out of range
+[Error]: Incorrect formatting or temperature value of command [M143 S-2 ; weird number]
+[Error]: Incorrect formatting or temperature value of command [M143 V5 ; incorrect param]
+[Danger]: Command [M193 S3 ; Below threshold] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_07.gcode[Error]: Incorrect formatting or temperature value of command [M193 S-11 ; weird number]
+[Error]: Incorrect formatting or temperature value of command [M193 X1 ; incorrect param]
+
+[Danger]: Command [M190 R500 ; Ensure bed temperature is set to 500´┐¢C] out of range
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+[Danger]: Command [M190 S1000 ; temp out of bounds] out of range
+[Danger]: Command [M190 S4 ; temp out of bounds] out of range
+[Error]: Incorrect formatting or temperature value [M190 S-1 ; weird number]
+[Error]: Incorrect formatting or temperature value [M190 X1 V5 ; wrong params]
+[Danger]: Command [M190 R1000 ; temp out of bounds] out of range
+[Danger]: Command [M190 R4 ; temp out of bounds] out of range
+[Error]: Incorrect formatting or temperature value [M190 R-1 ; weird number]
+[Error]: Incorrect formatting or temperature value [M190 X1 V5 ; wrong params]
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_08.gcode
+[Danger]: Command [M191 S700 ; Ensure chamber temperature is set to 700´┐¢C] out of range
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_09.gcode
+[Danger]: Command [M303 E0 S600 C8 ; Ensure PID tuning command at 600´┐¢C] out of range
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_10.gcode
+[Danger]: Command [M710 A1 S800 I128 ; Ensure custom command is repeated] out of range
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_11.gcode
+[Danger]: Command [M104 S300 ; Set extruder temperature to 300░C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_12.gcode
+[Danger]: Command [M303 S5210] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_13.gcode
+[Danger]: Command [M140 S880 ; Set bed temperature to S880´┐¢C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_14.gcode
+[Danger]: Command [M141 S600 ; Set chamber temperature to 600´┐¢C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_15.gcode
+[Danger]: Command [M190 S800 ; Wait for bed temperature to reach 800´┐¢C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_16.gcode
+[Danger]: Command [M191 S900 ; Wait for chamber temperature to reach 900´┐¢C] out of range
+[Danger]: Command [M191 S4 ; out of bounds temp] out of range
+[Error]: Incorrect formatting or temp value of command [M191 S-904 ; Weird]
+[Error]: Incorrect formatting or temp value of command [M191 V8 X1 ; incorrect formatting]
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_17.gcode
+[Danger]: Command [M193 S780 ; Stabilize temperature at 780´┐¢C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_18.gcode
+[Error]: Incorrect formatting of command [M303 E3 C8 S21]
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_19.gcode
+[Danger]: Command [M143 S9999 ; Set maximum hot-end temperature to ridicioulus number] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_20.gcode
+[Danger]: Command [M106 S9000] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_1.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M143 S300 ; Set maximum hot-end temperature to 300░C] out of range
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_10.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M141 S100 ; Set chamber temperature to 100░C] out of range
+[Danger]: Command [M193 S280 ; Stabilize temperature at 280░C] out of range
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_11.gcode
+[Danger]: Command [M143 S700 ; Set maximum hot-end temperature to 700´┐¢C] out of range
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_12.gcode
+[Danger]: Command [M193 S60 ; Stabilize temperature at 60´┐¢C] out of range
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M141 S100 ; Set chamber temperature to 100´┐¢C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_13.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M143 S300 ; Set maximum hot-end temperature to 300░C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_14.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M193 S280 ; Stabilize temperature at 280░C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_15.gcode
+[Danger]: Command [M141 S100 ; Set chamber temperature to 100░C] out of range
+[Danger]: Command [M143 S300 ; Set maximum hot-end temperature to 300░C] out of range
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_16.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M107] contains subsequent commands that require cooling
+[Danger]: Command [M193 S280 ; Stabilize temperature at 280░C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_17.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M141 S100 ; Set chamber temperature to 100░C] out of range
+[Danger]: Command [M143 S300 ; Set maximum hot-end temperature to 300░C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_18.gcode
+[Danger]: Command [M143 S300 ; Set maximum hot-end temperature to 300░C] out of range
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M107] contains subsequent commands that require cooling
+[Danger]: Command [M193 S280 ; Stabilize temperature at 280░C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_19.gcode
+[Danger]: Command [M141 S100 ; Set chamber temperature to 100░C] out of range
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M193 S280 ; Stabilize temperature at 280░C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_2.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_20.gcode
+[Danger]: Command [M193 S6 ; Stabilize temperature at 280´┐¢C] out of range
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M143 S300 ; Set maximum hot-end temperature to 300´┐¢C] out of range
+[Error]: Incorrect formatting of command [M
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_21.gcode
+[Danger]: Command [M303 E0 C5 S400 ; out of bounds (hotend)] out of range
+303 X1 W3 ; wrong params]
+[Error]: Incorrect formatting of command [M303 E0 C5 S-19 ; Weird charcter (hotend)]
+[Danger]: Command [M303 E0 C5 S2 ; out of bounds (hotend)] out of range
+[Warning]: C parameter in command [M303 E0 C1 S19 ; C param too low (hotend)] is too low.
+[Danger]: Command [M303 E-1 C5 S400 ; out of bounds (bedtemp)] out of range
+[Danger]: Command [M303 E-1 C5 S2 ; out of bounds (bedtemp)] out of range
+[Warning]: C parameter in command [M303 E-1 C2 S20 ; C param to low (bedtemp)] is too low.
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_22.gcode
+[Error]: Incorrect formatting of command [M303 E-1 C5 S-19 ; Weird charcter (bedtemp)]
+[Error]: Incorrect formatting or value in command [M710 X1 Y5 ; invalid formatting]
+[Error]: Incorrect formatting or value in command [M710 Z ; invalid formatting]
+[Danger]: Command [M710 A1 S300 ; out of bound] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_3.gcode
+[Danger]: Command [M107] contains subsequent commands that require cooling
+[Error]: Incorrect formatting or value in command [M710 A2 S-100 ; weird number]
+[Danger]: Command [M193 S280 ; Stabilize temperature at 280C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_4.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M107] contains subsequent commands that require cooling
+[Danger]: Command [M143 S300 ; Set maximum hot-end temperature to 300░C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_5.gcode
+[Danger]: Command [M141 S100 ; Set chamber temperature to 100░C] out of range
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M107] contains subsequent commands that require cooling
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_6.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M193 S280 ; Stabilize temperature at 280░C] out of range
+[Danger]: Command [M141 S100 ; Set chamber temperature to 100░C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_7.gcode
+[Danger]: Command [M143 S300 ; Set maximum hot-end temperature to 300░C] out of range
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M107] contains subsequent commands that require cooling
+[Danger]: Command [M104 S0 ; Turn off extruder] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_8.gcode
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M193 S280 ; Stabilize temperature at 280░C] out of range
+[Danger]: Command [M141 S100 ; Set chamber temperature to 100░C] out of range
+
+Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\malicious\malicious_gcode_mixed_9.gcode
+[Danger]: Command [M143 S300 ; Set maximum hot-end temperature to 300░C] out of range
+[Warning]: Command [M107 ; Turn off the fan] is invoked which turns off the laser.
+[Danger]: Command [M107] contains subsequent commands that require cooling
+
+Done
+
+Process finished with exit code 0
