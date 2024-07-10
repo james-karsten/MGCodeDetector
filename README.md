@@ -24,13 +24,26 @@ This method is added to prevent invalid syntax of G-code from being parsed by th
 
 **G-code syntax regex**:
 
-```^([GMT]\d+)((\s+[XYZEFSPIJKDHLQWUVOR](-?\d+(\.\d*)?)?)*)\s*$```
+```^([GMT]\d+)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$```
 
 **Breakdown**:
 
-- ```([GMT]\d+)``` = Line has to start with G, M or T followed by one or more digits.
-- ```((\s+[XYZEFSPIJKDHLQWUVOR](-?\d+(\.\d*)?)?)``` = Line follows with one of the characters listed at the left which are the parameters or flags of the G-code. This includes negative numbers, subcodes (X30.3) or one or more digits (X1 or X132). It can also be repeated zero or multiple times, so no parameters or multiple parameters are possible.
-- ```s\*``` = Matches zero or more whitespace at the end of the g-code line.
+- ``` ([GMT]\d+)``` Allows the command to start with a ‘G’, ‘M’ or a ‘T’. These characters start with G-code commands that are supported by the Marlin firmware. Therefore it limits the scope of the G-code instructions by the firmware
+- ```((\s+[A-Z]-?\d*( ̇\d+)?(-\d+)?)*)``` Accepts whitespace, zero or more parameters that are from A-Z, accepts zero or more negative or positive values with or without digits.
+- ``` \s*(;.*)?``` Accepts zero or more whitespace and comments after the G-code
+
+Also other regular expressions are used for commands that require special handling. These are:
+
+```            
+std::regex(R"(^G61(\s+[A-Z]+\s*-?\d*(\.\d+)?)*\s*(;.*)?$)"),                     // G61 with multiple parameters
+std::regex(R"(^G29(\s+[A-Z](\s+-?\d+(\.\d+)?)?)*\s*(;.*)?$)"),                   // G29 that can accept params without values
+std::regex(R"(^(M0|M16|M23|M28|M30|M32|M33|M117|M118|M815|M919|M928|M999)(\s+[^;\s]+(\s+[^;\s]+)*)?\s*(;.*)?$)"), // Special M codes that can accept strings
+std::regex(R"((T\?|Tx|Tc|T"|T)$)"),                                              // T-code pattern
+std::regex(R"(^([GMT]\d+(\.\d+)?)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$)"),  // General G-code pattern
+```
+
+For example, the M28 takes a filename as input or the M32 instruction which loads G-code files from the SD card requires a file path. Or the G29 instruction that accepts parameters without values and the G61 which can contain multiple parameters one after the other. These instructions differ from the regular expression listed in Listing 2 as these
+instructions only accept parameters as input.
 
 Tests of this regular expression can be found in the test file _InvalidGCodeParser.cpp_ under the _Google_tests_ folder: https://github.com/james-karsten/MGCodeDetector/blob/invalid-gcode-detection/Google_tests/InvalidGCodeParser.cpp
 
@@ -66,18 +79,6 @@ This functionality is also implemented when AUTOTEMP is used (examples: https://
 - Gives warning when instruction is used
 - Checks wheter instruction has subsequent commands that require cooling. If so, it states it in output. (e.g. If M104 command is invoked after
 the fans are turned off, the printer might get overheated)
-  - TODO: Functionality of check works. But need to include subsequence of these commands:
-    - "M104", // Set Hotend Temperature
-    - "M109", // Wait for Hotend Temperature
-    - "M140", // Set Bed Temperature
-    - "M141", // Set Chamber Temperature
-    - "M143", // Set Laser Cooler Temperature
-    - "M190", // Wait for Bed Temperature
-    - "M191", // Wait for Chamber Temperature
-    - "M193", // Set Laser Cooler Temperature
-    - "M303", // PID autotune
-    - "M306", // Model Predictive Temp. Control
-    - "M710",// Controller Fan settings
 
 #### M140
 - If ```M140 S100``` is used, checks on temperature bounds.
@@ -104,12 +105,20 @@ the fans are turned off, the printer might get overheated)
 - ```M191 R40``` checks on temp bounds
 - other format gives incorrect format warning
 
+#### M193
+- ```M193 S100``` checks on temp bounds
+- Checks if ```LASER_FEATURE``` is enabled and ```TEMP_SENSOR_COOLER == 1``` 
+- other format gives incorrect format warning
+
 #### M303
 - Checks on ```S``` param if in safe temp range 0=hotend -1=bed /
 - Checks on ```E``` param if contains either 0 or -1
 - Checks ```C``` param if it is bigger then 3 (required)
 - Checks if ```PIDTEMP``` and ```PIDTEMPBED``` are enabled for ```M303```command to be used
 - Outputs warning if wrong format is used
+
+#### M306
+- invoked warning whenever used in G-code file.
 
 #### M710
 - Checks if ```CONTROLLER_FAN_EDITABLE``` is enabled in the configuration.
@@ -226,4 +235,4 @@ the fans are turned off, the printer might get overheated)
 | M306 - Model Predictive Temp. Control  | 2.0.9.4        | thermal                           | MPCTEMP                                                                 | Set MPC values for a hotend.                             |
 | M710 - Controller Fan settings         | 2.0.5.2        | thermal                           | CONTROLLER_FAN_EDITABLE                                                 | Set or report controller fan settings.                   |
 
-
+DISCLAIMER: Some test methods are generated with the help of GPT model 4o as well as the regular expressions.
