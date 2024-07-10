@@ -72,7 +72,7 @@ bool GCodeSecurityDispatcher::M106(char *gcode) {
         }
     } else {
         /* Can't find speed value */
-        std::cerr << "[Error]: speed value " << speed << " of Gcode command [" << gcode << "] invalid." << std::endl;
+        std::cerr << "[Error]: speed value or formatting of Gcode command [" << gcode << "] invalid." << std::endl;
     }
 
     return false;

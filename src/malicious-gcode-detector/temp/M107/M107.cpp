@@ -19,6 +19,7 @@ void GCodeSecurityDispatcher::M107(char *gcode) {
 //    /* if LASER_SYNCHRONOUS_M106_M107 is enabled, it turns off the laser. */
     #if ENABLED(LASER_SYNCHRONOUS_M106_M107)
         std::cout << "[Warning]: Command [" << gcodeString << "] is invoked which turns off the laser." << std::endl;
+        return;
     #endif
 
     std::cout << "[Warning]: Command [" << gcodeString << "] is invoked which turns off the fans." << std::endl;

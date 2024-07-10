@@ -33,7 +33,7 @@ bool GCodeSecurityDispatcher::M140(char *gcode) {
     }
 
     /* incorrect formatting M104 command*/
-    std::cout << "[Warning]: Incorrect formatting of command [" << gcode << "]" << std::endl;
+    std::cerr << "[Error]: Incorrect formatting or temperature value of command [" << gcode << "]" << std::endl;
     return false;
 }
 

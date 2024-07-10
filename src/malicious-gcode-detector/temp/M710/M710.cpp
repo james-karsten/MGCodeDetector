@@ -18,7 +18,7 @@ bool GCodeSecurityDispatcher::M710(char *gcode){
 
         if (result.empty()) {
             // Incorrect formatting of command
-            std::cout << "[Warning]: Incorrect formatting of command [" << gcode << "]" << std::endl;
+            std::cerr << "[Error]: Incorrect formatting or value in command [" << gcode << "]" << std::endl;
             return false;
         }
 
@@ -38,7 +38,7 @@ bool GCodeSecurityDispatcher::M710(char *gcode){
             }
         }
     #else
-        std::cout << "[Error]: Command: [" << gcode << "] not possible due CONTROLLER_FAN_EDITABLE not enabled in configuration." << std::endl;
+        std::cerr << "[Error]: Command: [" << gcode << "] not possible due CONTROLLER_FAN_EDITABLE not enabled in configuration." << std::endl;
         return false;
     #endif
     return false;

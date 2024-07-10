@@ -35,7 +35,7 @@ bool GCodeSecurityDispatcher::M143_M193(char *gcode) {
 
             return temperatureSecurity.safe_range(gcode, temp, COOLER_MINTEMP, COOLER_MAXTEMP);
         } else {
-            std::cout << "[Error]: Command [" << gcode << "] not possible due incorrect formatting." << std::endl;
+            std::cerr << "[Error]: Incorrect formatting or temperature value of command [" << gcode << "]" << std::endl;
             return false;
         }
     #endif

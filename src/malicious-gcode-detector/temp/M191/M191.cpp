@@ -34,6 +34,6 @@ bool GCodeSecurityDispatcher::M191(char *gcode) {
     }
 
     // Incorrect formatting of command
-    std::cout << "[Warning]: Incorrect formatting of command [" << gcode << "]" << std::endl;
+    std::cerr << "[Error]: Incorrect formatting or temp value of command [" << gcode << "]" << std::endl;
     return false;
 }

@@ -7,7 +7,7 @@
  * M190 R40 checks on temp bounds
  * other format gives incorrect format warning
  */
-#include <string>
+#include  <string>
 #include <regex>
 #include <iostream>
 #include "../../GCodeSecurityDispatcher.h"
@@ -30,7 +30,7 @@ bool GCodeSecurityDispatcher::M190(char *gcode) {
                 int coolingTime = std::stoi(match[3].str());
                 return temperatureSecurity.safe_temperature_range(gcode, paramValue, BED_MINTEMP, BED_MAXTEMP);
             #else
-                std::cout << "[Error]: Command: " << gcode << " not possible due BED_ANNEALING_GCODE not enabled in configuration." << std::endl;
+                std::cerr << "[Error]: Command: " << gcode << " not possible due BED_ANNEALING_GCODE not enabled in configuration." << std::endl;
                 return false;
             #endif
         }
@@ -48,7 +48,7 @@ bool GCodeSecurityDispatcher::M190(char *gcode) {
     }
 
     // Incorrect formatting of M190 command
-    std::cout << "[Warning]: Incorrect formatting of command [" << gcode << "]" << std::endl;
+    std::cerr << "[Error]: Incorrect formatting or temperature value [" << gcode << "]" << std::endl;
     return false;
 }
 
