@@ -44,19 +44,20 @@ TEST_F(GCodeSecurityDispatcherTest, M143_M193_incorrect_temp_2) {
 }
 
 TEST_F(GCodeSecurityDispatcherTest, M143_M193_incorrect_format) {
-#if ENABLED(LASER_FEATURE) and TEMP_SENSOR_COOLER == 1
+#if ENABLED(LASER_FEATURE) && TEMP_SENSOR_COOLER == 1
     char gcode[] = "M193 S-100";
     // Capture stdout
-    testing::internal::CaptureStdout();
+    testing::internal::CaptureStderr();
 
     // Dispatch command
     dispatcher.M143_M193(gcode);
 
     // snapshot the captured output
-    std::string output = testing::internal::GetCapturedStdout();
+    std::string output = testing::internal::GetCapturedStderr();
 
     // Verify the output
-    EXPECT_THAT(output, HasSubstr("[Error] M143_M193 command: M193 S-100 not possible due incorrect formatting."));
+    EXPECT_EQ(output, "[Error]: Incorrect formatting or temperature value of command [M193 S-100]\n");
+
 #endif
 }
 
@@ -64,16 +65,17 @@ TEST_F(GCodeSecurityDispatcherTest, M143_M193_incorrect_format_2) {
 #if ENABLED(LASER_FEATURE) and TEMP_SENSOR_COOLER == 1
     char gcode[] = "M143 S-100";
     // Capture stdout
-    testing::internal::CaptureStdout();
+    testing::internal::CaptureStderr();
 
     // Dispatch command
     dispatcher.M143_M193(gcode);
 
     // snapshot the captured output
-    std::string output = testing::internal::GetCapturedStdout();
+    std::string output = testing::internal::GetCapturedStderr();
 
     // Verify the output
-    EXPECT_THAT(output, HasSubstr("[Error] M143_M193 command: M143 S-100 not possible due incorrect formatting."));
+    EXPECT_EQ(output, "[Error]: Incorrect formatting or temperature value of command [M143 S-100]\n");
+
 #endif
 }
 
@@ -90,7 +92,7 @@ TEST_F(GCodeSecurityDispatcherTest, M143_M193_laser_off) {
     std::string output = testing::internal::GetCapturedStdout();
 
     // Verify the output
-    EXPECT_THAT(output, HasSubstr("[Warning] M143_M193 command: M143 S0 laser cooler turned off."));
+    EXPECT_THAT(output, HasSubstr("[Warning]: Command [M143 S0] laser cooler turned off.\n"));
 #endif
 }
 

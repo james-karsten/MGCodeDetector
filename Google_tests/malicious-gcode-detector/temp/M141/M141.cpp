@@ -11,6 +11,11 @@ protected:
     GCodeSecurityDispatcher dispatcher;
 };
 
+TEST_F(GCodeSecurityDispatcherTest, M141_S0) {
+    char gcode[] = "M141 S0";
+    EXPECT_TRUE(dispatcher.M141(gcode));
+}
+
 TEST_F(GCodeSecurityDispatcherTest, M141_correct_temp) {
     char gcode[] = "M141 S60";
     EXPECT_TRUE(dispatcher.M141(gcode));

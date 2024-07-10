@@ -405,23 +405,41 @@ void GCodeParser::parse(char *p) {
 
 /**
  * This method detects invalid G-code input
+ * Note that the regular expressions are created with the help of GPT4o
  * @return false if input of G-code is invalid, true if it is valid
  */
 bool GCodeParser::detect_valid_gcode(const std::string &gcode, bool case_insensitive) {
 
-    std::regex g_pattern(R"(^([GMT]\d+)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$)");
+    /* regex patterns */
+    std::vector<std::regex> gcode_patterns = {
+            std::regex(R"(^G61(\s+[A-Z]+\s*-?\d*(\.\d+)?)*\s*(;.*)?$)"),                     // G61 with multiple parameters
+            std::regex(R"(^G29(\s+[A-Z](\s+-?\d+(\.\d+)?)?)*\s*(;.*)?$)"),                   // G29 that can accept params without values
+            std::regex(R"(^(M0|M16|M23|M28|M30|M32|M33|M117|M118|M815|M919|M928|M999)(\s+[^;\s]+(\s+[^;\s]+)*)?\s*(;.*)?$)"), // Special M codes that can accept strings
+            std::regex(R"((T\?|Tx|Tc|T"|T)$)"),                                              // T-code pattern
+            std::regex(R"(^([GMT]\d+(\.\d+)?)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$)"),  // General G-code pattern
+    };
 
-    // different G-code pattern if GCode is case-insensitive
+    // Different G-code pattern if GCode is case-insensitive
     if (case_insensitive) {
-        g_pattern = std::regex(R"(^([GMT]\d+)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$)", std::regex_constants::icase);
+        /* regex patterns case-insensitive */
+        gcode_patterns = {
+                std::regex(R"(^G61(\s+[A-Z]+\s*-?\d*(\.\d+)?)*\s*(;.*)?$)",  std::regex::icase),                     // G61 with multiple parameters
+                std::regex(R"(^G29(\s+[A-Z](\s+-?\d+(\.\d+)?)?)*\s*(;.*)?$)",  std::regex::icase),                   // G29 that can accept params without values
+                std::regex(R"(^(M0|M16|M23|M28|M30|M32|M33|M117|M118|M815|M919|M928|M999)(\s+[^;\s]+(\s+[^;\s]+)*)?\s*(;.*)?$)",  std::regex::icase), // Special M codes that can accept strings
+                std::regex(R"((T\?|Tx|Tc|T"|T)$)",  std::regex::icase),                                              // T-code pattern
+                std::regex(R"(^([GMT]\d+(\.\d+)?)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$)",  std::regex::icase),  // General G-code pattern
+        };
     }
 
-    if(!std::regex_match(gcode, g_pattern)) {
-        std::cerr << "Invalid G-code syntax: " << gcode << std::endl;
-        return false;
+    /* check if g-code matches any of the patterns */
+    for (const auto& pattern : gcode_patterns) {
+        if (std::regex_match(gcode, pattern)) {
+            return true;
+        }
     }
 
-    return true;
+    std::cerr << "Invalid G-code syntax: " << gcode << std::endl;
+    return false;
 }
 
 void GCodeParser::unknown_command_warning() {

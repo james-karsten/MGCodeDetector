@@ -25,15 +25,15 @@ bool GCodeSecurityDispatcher::M191(char *gcode) {
 
         switch (commandType) {
             case 'S':
-                return temperatureSecurity.safe_temperature_range(gcode, paramValue, CHAMBER_MINTEMP, CHAMBER_MAXTEMP);
+                return temperatureSecurity.safe_range(gcode, paramValue, CHAMBER_MINTEMP, CHAMBER_MAXTEMP);
             case 'R':
-                return temperatureSecurity.safe_temperature_range(gcode, paramValue, CHAMBER_MINTEMP, CHAMBER_MAXTEMP);
+                return temperatureSecurity.safe_range(gcode, paramValue, CHAMBER_MINTEMP, CHAMBER_MAXTEMP);
             default:
                 break;
         }
     }
 
     // Incorrect formatting of command
-    std::cout << "[Warning]: Incorrect formatting of command [" << gcode << "]" << std::endl;
+    std::cerr << "[Error]: Incorrect formatting or temp value of command [" << gcode << "]" << std::endl;
     return false;
 }

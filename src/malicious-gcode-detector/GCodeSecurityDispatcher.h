@@ -40,6 +40,8 @@ public:
     /* M303 */
     bool M303(char *gcode);
 
+    /* M306 */
+    void M306(char *gcode);
     bool M710(char *gcode);
 };
 

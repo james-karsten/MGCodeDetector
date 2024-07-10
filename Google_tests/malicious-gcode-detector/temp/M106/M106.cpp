@@ -33,3 +33,21 @@ TEST_F(GCodeSecurityDispatcherTest, HandlesInvalidTemperature) {
     EXPECT_FALSE(dispatcher.M106(gcode));
 }
 
+TEST_F(GCodeSecurityDispatcherTest, TestVariablesM106) {
+    /* if EXTRA_FAN_SPEED disabled Notify user  */
+    #if DISABLED(EXTRA_FAN_SPEED)
+    char gcode[] = "M106 P1 T3-255";
+    // Capture stdout
+    testing::internal::CaptureStdout();
+
+    // Dispatch command
+    dispatcher.M106(gcode);
+
+    // snapshot the captured output
+    std::string output = testing::internal::GetCapturedStdout();
+
+    // Verify the output
+    EXPECT_EQ(output, "EXTRA_FAN_SPEED should be defined in the configuration for instruction M106 P1 T3-255\n");
+
+    #endif
+}

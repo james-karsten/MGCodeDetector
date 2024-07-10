@@ -38,7 +38,7 @@ bool GCodeSecurityDispatcher::M106(char *gcode) {
 
                 /* retrieve speed from gcode */
                 int speed = std::stoi(matches[1].str());
-                return temperatureSecurity.safe_temperature_range(gcode, speed, MIN_FAN_SPEED, MAX_FAN_SPEED);
+                return temperatureSecurity.safe_range(gcode, speed, MIN_FAN_SPEED, MAX_FAN_SPEED);
             }
         #endif
     } else if (std::regex_search(gcodeString, matches, setFanSpeed)) { // M106 P2 T2
@@ -64,7 +64,7 @@ bool GCodeSecurityDispatcher::M106(char *gcode) {
     if (speed != -1) {
 
         /* Check if speed is within bounds */
-        if (temperatureSecurity.safe_temperature_range(gcode, speed, MIN_FAN_SPEED, MAX_FAN_SPEED)) {
+        if (temperatureSecurity.safe_range(gcode, speed, MIN_FAN_SPEED, MAX_FAN_SPEED)) {
 
             /* Remove M107 from log list if speed is within bounds */
             thermalState.remove_item_physical_dangerous_command_log("M107");
@@ -72,7 +72,7 @@ bool GCodeSecurityDispatcher::M106(char *gcode) {
         }
     } else {
         /* Can't find speed value */
-        std::cerr << "[Error]: speed value " << speed << " of Gcode command [" << gcode << "] invalid." << std::endl;
+        std::cerr << "[Error]: speed value or formatting of Gcode command [" << gcode << "] invalid." << std::endl;
     }
 
     return false;

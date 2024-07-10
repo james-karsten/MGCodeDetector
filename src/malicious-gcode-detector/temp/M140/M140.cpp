@@ -23,7 +23,7 @@ bool GCodeSecurityDispatcher::M140(char *gcode) {
     /* check if result is not empty */
     if (!result.empty()) {
         int temp = stoi(result.at("S"));
-        return temperatureSecurity.safe_temperature_range(gcode, temp, BED_MINTEMP, BED_MAXTEMP);
+        return temperatureSecurity.safe_range(gcode, temp, BED_MINTEMP, BED_MAXTEMP);
     }
 
     // Check if M140 I1 is used
@@ -33,7 +33,7 @@ bool GCodeSecurityDispatcher::M140(char *gcode) {
     }
 
     /* incorrect formatting M104 command*/
-    std::cout << "[Warning]: Incorrect formatting of command [" << gcode << "]" << std::endl;
+    std::cerr << "[Error]: Incorrect formatting or temperature value of command [" << gcode << "]" << std::endl;
     return false;
 }
 

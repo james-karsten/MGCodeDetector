@@ -4,6 +4,7 @@
 
 #include <string>
 #include <regex>
+#include <iostream>
 #include "../TemperatureSecurity.h"
 #include "../../GCodeSecurityDispatcher.h"
 
@@ -15,8 +16,6 @@ bool GCodeSecurityDispatcher::M104_M109(char *gcode) {
 
     /* M109 check wait for cooling */
     if (m109_wait_cooling(gcode, rParam)) {
-
-
         return true;
     }
 
@@ -30,9 +29,10 @@ bool GCodeSecurityDispatcher::M104_M109(char *gcode) {
 
     /* perform checks with normal S command */
     if (temp != -1) {
-        return temperatureSecurity.safe_temperature_range(gcode, temp, HEATER_0_MINTEMP, HEATER_0_MAXTEMP);
+        return temperatureSecurity.safe_range(gcode, temp, HEATER_0_MINTEMP, HEATER_0_MAXTEMP);
     }
 
+    std::cerr << "[Error]: Incorrect formatting or temperature value of command [" << gcode << "]" << std::endl;
     return false;
 }
 
@@ -67,8 +67,8 @@ bool GCodeSecurityDispatcher::m104_m109_autotemp(char *gcode, int &sParam, int &
         }
 
         // check if values are in safe temperature range
-        if(temperatureSecurity.safe_temperature_range(gcode, sParam, bParam,
-                                                      HEATER_0_MINTEMP, HEATER_0_MAXTEMP)) {
+        if(temperatureSecurity.safe_range(gcode, sParam, bParam,
+                                          HEATER_0_MINTEMP, HEATER_0_MAXTEMP)) {
             return true;
         }
         return false;
@@ -103,7 +103,7 @@ bool GCodeSecurityDispatcher::m109_wait_cooling(char *gcode, int &rParam) {
         }
 
         //  Check if R command is within bounds
-        if (temperatureSecurity.safe_temperature_range(gcode, rParam, HEATER_0_MINTEMP, HEATER_0_MAXTEMP)) {
+        if (temperatureSecurity.safe_range(gcode, rParam, HEATER_0_MINTEMP, HEATER_0_MAXTEMP)) {
             return true;
         }
         return false;

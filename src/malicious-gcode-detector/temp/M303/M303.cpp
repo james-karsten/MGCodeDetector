@@ -1,7 +1,7 @@
 /**
  * This class detects the M303 commmand
  * M303 E0 C8 S210
- * Checks on S param if in safe temp range 0=hotend -1=bed /
+ * Checks on S param if in safe temp range /
  * Checks on E param if contains either 0 or -1
  * Checks C param if it is bigger then 3 (required)
  * Checks if PIDTEMP and PIDTEMPBED are enabled for M303 command to be used
@@ -25,7 +25,7 @@ bool GCodeSecurityDispatcher::M303(char *gcode){
 
         if (result.empty()) {
             // Incorrect formatting of command
-            std::cout << "[Warning]: Incorrect formatting of command [" << gcode << "]" << std::endl;
+            std::cerr << "[Error]: Incorrect formatting of command [" << gcode << "]" << std::endl;
             return false;
         }
 
@@ -49,22 +49,22 @@ bool GCodeSecurityDispatcher::M303(char *gcode){
             switch (eParam) {
                 case 0:
                     /* Check against Hotend threshold */
-                    return temperatureSecurity.safe_temperature_range(gcode, sParam, HEATER_0_MINTEMP, HEATER_0_MAXTEMP);
+                    return temperatureSecurity.safe_range(gcode, sParam, HEATER_0_MINTEMP, HEATER_0_MAXTEMP);
                 case -1:
                     /* Check against temp bed threshold*/
-                    return temperatureSecurity.safe_temperature_range(gcode, sParam, BED_MINTEMP, BED_MAXTEMP);
+                    return temperatureSecurity.safe_range(gcode, sParam, BED_MINTEMP, BED_MAXTEMP);
                 default:
                     break;
             }
         } else {
-            return temperatureSecurity.safe_temperature_range(gcode, sParam, HEATER_0_MINTEMP, HEATER_0_MAXTEMP);
+            return temperatureSecurity.safe_range(gcode, sParam, HEATER_0_MINTEMP, HEATER_0_MAXTEMP);
         }
 
         // Incorrect formatting of command
-        std::cout << "[Warning]: Incorrect formatting of command [" << gcode << "]" << std::endl;
+        std::cerr << "[Error]: Incorrect formatting or temp value of command [" << gcode << "]" << std::endl;
         return false;
     #else
-        std::cout << "[Error]: Command: " << gcode << " not possible due PIDTEMP and PIDTEMPBED not enabled in configuration." << std::endl;
+        std::cerr << "[Error]: Command: " << gcode << " not possible due PIDTEMP and PIDTEMPBED not enabled in configuration." << std::endl;
         return false;
     #endif
 }
