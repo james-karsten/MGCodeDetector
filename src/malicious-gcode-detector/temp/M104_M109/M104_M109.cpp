@@ -4,6 +4,7 @@
 
 #include <string>
 #include <regex>
+#include <iostream>
 #include "../TemperatureSecurity.h"
 #include "../../GCodeSecurityDispatcher.h"
 
@@ -15,8 +16,6 @@ bool GCodeSecurityDispatcher::M104_M109(char *gcode) {
 
     /* M109 check wait for cooling */
     if (m109_wait_cooling(gcode, rParam)) {
-
-
         return true;
     }
 
@@ -33,6 +32,7 @@ bool GCodeSecurityDispatcher::M104_M109(char *gcode) {
         return temperatureSecurity.safe_range(gcode, temp, HEATER_0_MINTEMP, HEATER_0_MAXTEMP);
     }
 
+    std::cerr << "[Error]: Incorrect formatting or temperature value of command [" << gcode << "]" << std::endl;
     return false;
 }
 
