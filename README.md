@@ -23,12 +23,13 @@ Note: tested on Ubuntu 22.04.3 LTS (Jammy Jellyfish)
 1) Download hardware configuration (Configuration.h and Cofiguraiton_adv.h) files from Marlin: https://github.com/MarlinFirmware/Configurations/blob/import-2.1.x/config/examples
 2) Place files in the 'include' folder of the project (replace if necessary): https://github.com/james-karsten/MGCodeDetector/tree/master/include
 3) Clone project ```git clone --recurse-submodules https://github.com/james-karsten/MGCodeDetector.git```
-4) Create 'build' directory in project and navigate to that directory.
-5) Then run the following commands:
-6) ```cmake .. ```
-7) ```cmake --build . ```
-8) ```./untitled```
-9) In the menu, select the .gcode filepath you wish to analyse.
+4) Navigate to the cloned directory
+5) Create folder called 'build'
+6) Navigate to the 'build' folder and run the following commands:
+8) ```cmake .. ```
+9) ```cmake --build . ```
+10) ```./untitled```
+11) In the menu, select the .gcode filepath you wish to analyse.
 
 # Documentation of code
 This section serves as documentation for all additional code around the Marlin parser.
