@@ -18,6 +18,7 @@ When cloning this repository, be sure to include the submodules as well using
 - CMake version 3.10 
 - C++17
 
+### Steps
 1) Download hardware configuration (Configuration.h and Cofiguraiton_adv.h) files from Marlin: https://github.com/MarlinFirmware/Configurations/blob/import-2.1.x/config/examples
 2) Place files in the 'include' folder of the project (replace if necessary): https://github.com/james-karsten/MGCodeDetector/tree/master/include
 3) Clone project ```git clone --recurse-submodules https://github.com/james-karsten/MGCodeDetector.git```
