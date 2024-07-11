@@ -27,7 +27,7 @@ Note: tested on Ubuntu 22.04.3 LTS (Jammy Jellyfish)
 5) Then run the following commands:
 6) ```cmake .. ```
 7) ```cmake --build . ```
-8) ./ProjectName
+8) ```./untitled```
 9) In the menu, select the .gcode filepath you wish to analyse.
 
 # Documentation of code
