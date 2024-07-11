@@ -13,10 +13,11 @@ When cloning this repository, be sure to include the submodules as well using
 ```git clone --recurse-submodules https://github.com/james-karsten/MGCodeDetector.git```
 
 ## Building 
+Note: tested on Ubuntu 22.04.3 LTS (Jammy Jellyfish)
 
 ### Prerequisites
-- CMake version 3.10 
-- C++17
+- CMake version >= 3.10
+- C++ version >= 20
 
 ### Steps
 1) Download hardware configuration (Configuration.h and Cofiguraiton_adv.h) files from Marlin: https://github.com/MarlinFirmware/Configurations/blob/import-2.1.x/config/examples
