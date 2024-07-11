@@ -59,7 +59,7 @@ void read_gcode_file_exp1(const std::string& filename) {
  * @return
  */
 int experiment_valid_invalid_gcodes() {
-    std::string directory = "C:\\Users\\james\\ClionProjects\\untitled\\files\\gcode\\valid\\";
+    std::string directory = "";
 
     for (const auto& entry : std::filesystem::directory_iterator(directory)) {
         if (entry.path().extension() == ".gcode") {
@@ -93,7 +93,7 @@ int experiment_valid_invalid_gcodes() {
  * @return
  */
 int experiment_benign_malicious_gcodes() {
-    std::string directory = "C:\\Users\\james\\ClionProjects\\untitled\\files\\gcode\\benign\\";
+    std::string directory = "";
 
     for (const auto& entry : std::filesystem::directory_iterator(directory)) {
         if (entry.path().extension() == ".gcode") {
@@ -110,6 +110,20 @@ int experiment_benign_malicious_gcodes() {
 
 
 int main() {
-    experiment_benign_malicious_gcodes();
+    std::string file;
+
+    // Configuration files
+    std::cout << "MGDetector v1" << std::endl;
+    std::cout << " " << std::endl;
+    std::cout << "IMPORTANT: Configuration files for your 3D printer can be downloaded from: https://github.com/MarlinFirmware/Configurations/tree/import-2.1.x/config/examples";
+    std::cout << "Only the 'Configuration.h' and 'Configuration_adv.h' files are necessary to download for this tool." << std::endl;
+    std::cout << "--------------------------------------------------------------" << std::endl;
+
+    // Retrieve filepath
+    std::cout << "Enter filepath for file analysis on malicious invalid G-code: " << std::endl;
+    std::getline(std::cin, file);
+
+    // Read code
+    GCodeFileReader::read_gcode_file(file);
 }
 
