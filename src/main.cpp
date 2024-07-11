@@ -59,7 +59,7 @@ void read_gcode_file_exp1(const std::string& filename) {
  * @return
  */
 int experiment_valid_invalid_gcodes() {
-    std::string directory = "C:\\Users\\james\\ClionProjects\\untitled\\files\\gcode\\valid\\";
+    std::string directory = "";
 
     for (const auto& entry : std::filesystem::directory_iterator(directory)) {
         if (entry.path().extension() == ".gcode") {
@@ -93,7 +93,7 @@ int experiment_valid_invalid_gcodes() {
  * @return
  */
 int experiment_benign_malicious_gcodes() {
-    std::string directory = "C:\\Users\\james\\ClionProjects\\untitled\\files\\gcode\\benign\\";
+    std::string directory = "";
 
     for (const auto& entry : std::filesystem::directory_iterator(directory)) {
         if (entry.path().extension() == ".gcode") {
