@@ -12,9 +12,21 @@ When cloning this repository, be sure to include the submodules as well using
 
 ```git clone --recurse-submodules https://github.com/james-karsten/MGCodeDetector.git```
 
-The submodules can be initialized by this command when the repository is already cloned.
+## Building 
 
-```git clone --recurse-submodules https://github.com/james-karsten/MGCodeDetector.git```
+### Prerequisites
+- CMake version 3.10 
+- C++17
+
+1) Download hardware configuration (Configuration.h and Cofiguraiton_adv.h) files from Marlin: https://github.com/MarlinFirmware/Configurations/blob/import-2.1.x/config/examples
+2) Place files in the 'include' folder of the project (replace if necessary): https://github.com/james-karsten/MGCodeDetector/tree/master/include
+3) Clone project ```git clone --recurse-submodules https://github.com/james-karsten/MGCodeDetector.git```
+4) Create 'build' directory in project and navigate to that directory.
+5) Then run the following commands:
+6) ```cmake .. ```
+7) ```cmake --build . ```
+8) ./ProjectName
+9) In the menu, select the .gcode filepath you wish to analyse.
 
 # Documentation of code
 This section serves as documentation for all additional code around the Marlin parser.
