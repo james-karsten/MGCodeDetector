@@ -412,23 +412,25 @@ bool GCodeParser::detect_valid_gcode(const std::string &gcode, bool case_insensi
 
     /* regex patterns */
     std::vector<std::regex> gcode_patterns = {
-            std::regex(R"(^G61(\s+[A-Z]+\s*-?\d*(\.\d+)?)*\s*(;.*)?$)"),                     // G61 with multiple parameters
-            std::regex(R"(^G29(\s+[A-Z](\s+-?\d+(\.\d+)?)?)*\s*(;.*)?$)"),                   // G29 that can accept params without values
-            std::regex(R"(^(M0|M16|M23|M28|M30|M32|M33|M117|M118|M815|M919|M928|M999)(\s+[^;\s]+(\s+[^;\s]+)*)?\s*(;.*)?$)"), // Special M codes that can accept strings
-            std::regex(R"((T\?|Tx|Tc|T"|T)$)"),                                              // T-code pattern
-            std::regex(R"(^([GMT]\d+(\.\d+)?)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$)"),  // General G-code pattern
+        std::regex(R"((?=.{1,96}$)^G61(\s+[A-Z]+\s*-?\d*(\.\d+)?)*\s*(;.*)?$)"),       // G61 with multiple parameters
+        std::regex(R"((?=.{1,96}$)^G29(\s+[A-Z](\s+-?\d+(\.\d+)?)?)*\s*(;.*)?$)"),     // G29 that can accept params without values
+        std::regex(R"((?=.{1,96}$)^(M0|M16|M23|M28|M30|M32|M33|M117|M118|M815|M919|M928|M999)(\s+[^;\s]+(\s+[^;\s]+)*)?\s*(;.*)?$)"), // Special M codes that can accept strings
+        std::regex(R"((?=.{1,96}$)(T\?|Tx|Tc|T"|T)$)"),                                // T-code pattern
+        std::regex(R"((?=.{1,96}$)^([GMT]\d+(\.\d+)?)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$)") // General G-code pattern
     };
 
     // Different G-code pattern if GCode is case-insensitive
     if (case_insensitive) {
         /* regex patterns case-insensitive */
+
         gcode_patterns = {
-                std::regex(R"(^G61(\s+[A-Z]+\s*-?\d*(\.\d+)?)*\s*(;.*)?$)",  std::regex::icase),                     // G61 with multiple parameters
-                std::regex(R"(^G29(\s+[A-Z](\s+-?\d+(\.\d+)?)?)*\s*(;.*)?$)",  std::regex::icase),                   // G29 that can accept params without values
-                std::regex(R"(^(M0|M16|M23|M28|M30|M32|M33|M117|M118|M815|M919|M928|M999)(\s+[^;\s]+(\s+[^;\s]+)*)?\s*(;.*)?$)",  std::regex::icase), // Special M codes that can accept strings
-                std::regex(R"((T\?|Tx|Tc|T"|T)$)",  std::regex::icase),                                              // T-code pattern
-                std::regex(R"(^([GMT]\d+(\.\d+)?)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$)",  std::regex::icase),  // General G-code pattern
+            std::regex(R"((?=.{1,96}$)^G61(\s+[A-Z]+\s*-?\d*(\.\d+)?)*\s*(;.*)?$)", std::regex::icase),       // G61 with multiple parameters
+            std::regex(R"((?=.{1,96}$)^G29(\s+[A-Z](\s+-?\d+(\.\d+)?)?)*\s*(;.*)?$)", std::regex::icase),     // G29 that can accept params without values
+            std::regex(R"((?=.{1,96}$)^(M0|M16|M23|M28|M30|M32|M33|M117|M118|M815|M919|M928|M999)(\s+[^;\s]+(\s+[^;\s]+)*)?\s*(;.*)?$)", std::regex::icase), // Special M codes that can accept strings
+            std::regex(R"((?=.{1,96}$)(T\?|Tx|Tc|T"|T)$)", std::regex::icase),                              // T-code pattern
+            std::regex(R"((?=.{1,96}$)^([GMT]\d+(\.\d+)?)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$)", std::regex::icase) // General G-code pattern
         };
+
     }
 
     /* check if g-code matches any of the patterns */

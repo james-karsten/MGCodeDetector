@@ -39,10 +39,11 @@ This method is added to prevent invalid syntax of G-code from being parsed by th
 
 **G-code syntax regex**:
 
-```^([GMT]\d+)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$```
+```((?=.{1,96}$)^([GMT]\d+(\.\d+)?)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$)```
 
 **Breakdown**:
 
+- ```((?=.{1,96}$)``` Allows 1 to 96 characters 
 - ``` ([GMT]\d+)``` Allows the command to start with a ‘G’, ‘M’ or a ‘T’. These characters start with G-code commands that are supported by the Marlin firmware. Therefore it limits the scope of the G-code instructions by the firmware
 - ```((\s+[A-Z]-?\d*( ̇\d+)?(-\d+)?)*)``` Accepts whitespace, zero or more parameters that are from A-Z, accepts zero or more negative or positive values with or without digits.
 - ``` \s*(;.*)?``` Accepts zero or more whitespace and comments after the G-code
@@ -50,11 +51,10 @@ This method is added to prevent invalid syntax of G-code from being parsed by th
 Also other regular expressions are used for commands that require special handling. These are:
 
 ```            
-std::regex(R"(^G61(\s+[A-Z]+\s*-?\d*(\.\d+)?)*\s*(;.*)?$)"),                     // G61 with multiple parameters
-std::regex(R"(^G29(\s+[A-Z](\s+-?\d+(\.\d+)?)?)*\s*(;.*)?$)"),                   // G29 that can accept params without values
-std::regex(R"(^(M0|M16|M23|M28|M30|M32|M33|M117|M118|M815|M919|M928|M999)(\s+[^;\s]+(\s+[^;\s]+)*)?\s*(;.*)?$)"), // Special M codes that can accept strings
-std::regex(R"((T\?|Tx|Tc|T"|T)$)"),                                              // T-code pattern
-std::regex(R"(^([GMT]\d+(\.\d+)?)((\s+[A-Z]-?\d*(\.\d+)?(-\d+)?)*)\s*(;.*)?$)"),  // General G-code pattern
+std::regex(R"((?=.{1,96}$)^G61(\s+[A-Z]+\s*-?\d*(\.\d+)?)*\s*(;.*)?$)"),       // G61 with multiple parameters
+std::regex(R"((?=.{1,96}$)^G29(\s+[A-Z](\s+-?\d+(\.\d+)?)?)*\s*(;.*)?$)"),     // G29 that can accept params without values
+std::regex(R"((?=.{1,96}$)^(M0|M16|M23|M28|M30|M32|M33|M117|M118|M815|M919|M928|M999)(\s+[^;\s]+(\s+[^;\s]+)*)?\s*(;.*)?$)"), // Special M codes that can accept strings
+std::regex(R"((?=.{1,96}$)(T\?|Tx|Tc|T"|T)$)"),                                // T-code pattern
 ```
 
 For example, the M28 takes a filename as input or the M32 instruction which loads G-code files from the SD card requires a file path. Or the G29 instruction that accepts parameters without values and the G61 which can contain multiple parameters one after the other. These instructions differ from the regular expression listed in Listing 2 as these
