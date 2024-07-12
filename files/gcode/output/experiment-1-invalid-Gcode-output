@@ -1,13 +1,36 @@
-Invalid output experiment 1
-
 C:\Users\james\CLionProjects\untitled\cmake-build-debug\untitled.exe
-Analyzing file: C:\Users\james\ClionProjects\untitled\files\gcode\invalid\invalid-marlin-gcodes.gcode
+Analyzing file: C:\Users\james\CLionProjects\untitled\files\gcode\invalid\invalid-marlin-gcodes.gcode
 
 valid G-codes:
  =====================
 Invalid G-codes:
 G1X10Y20Z30    ; Missing spaces
 G1.1X10Y20     ; Invalid G-code format
+G1 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z
+10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10  X8 Y9 Z10 X8 Y9
+Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 X8 Y9 Z10 ; To many characters
+T3 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1  S1 S1 S1 S1
+ S1 S1 S1 S1 S1 S1 S1 ; To many characters
+G61 X10 Y20 Z30 A40 B50 C60 D70 E80 F90 G100 H110 I120 J130 K140 L150 M160 N170 O180 P190 Q200 R210 S220 T230 U240
+G29 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R A B C D E F G H I J K L M N
+O P Q R A B C D E F G H I J K L M N O P Q R A B C D E F G H I J K L M N O P Q R A B C D E F G H I J K L M N O P Q R
+M0 This is a very long test string to ensure the M code pattern does not match correctly and is invalid
+M16 This string exceeds the maximum length allowed for M16 code pattern making it invalid for testing
+M23 Another long string to ensure the M23 pattern does not match correctly due to its excessive length
+M28 Example string for M28 code pattern matching purposes but it is too long to be valid in this case
+M30 A string that tests the M30 code pattern but exceeds the maximum length making it invalid for matching
+M32 Validating the M32 code pattern with this example string which is too long to be considered valid
+M33 A sample string to check M33 code pattern but it is too long to match correctly as valid input
+M117 Display message on the screen with M117 code pattern but this string exceeds the maximum length allowed
+M118 Another display message for M118 code pattern validation but it is too long to be valid input
+M815 Checking M815 pattern with this test string which is too long to match correctly and be considered valid
+M919 Validating M919 pattern with a sample string that exceeds the maximum length allowed making it invalid
+M928 A string to ensure M928 pattern works correctly but this string is too long to be valid input for matching
+M999 Testing the M999 pattern with an example string that is too long to match correctly as valid input
+T1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1 S1
+G1 X8 Y9 Z10 A11 B12 C13 D14 E15 F16 G17 H18 I19 J20 K21 L22 M23 N24 O25 P26 Q27 R28 S29 T30 U31 V32 W33 X34 Y35 Z36
+M100 X1.5 Y2.5 Z3.5 A4.5 B5.5 C6.5 D7.5 E8.5 F9.5 G10.5 H11.5 I12.5 J13.5 K14.5 L15.5 M16.5 N17.5 O18.5 P19.5 Q20.5 R21.
+5 S22.5 T23.5 U24.5 V25.5 W26.5 X27.5 Y28.5 Z29.5
 G1 X10 Y20 Z30 # Comment with other character
 G92..1         ; Double decimal point
 !        ; invalid char
